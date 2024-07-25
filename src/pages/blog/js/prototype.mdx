@@ -1,0 +1,34 @@
+
+<div className="mdx-box">
+#### Javascript 原型链
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript中的原型链是指每个对象都有一个原型对象（prototype），对象可以通过原型链继承另一个对象的属性和方法。
+###### &nbsp;
+#### 原型链的基本概念
+###### &nbsp;
+####  1 构造函数和原型对象：
+###### &nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;  在 JavaScript 中，每个函数都有一个 prototype 属性，这个属性是一个指针，指向一个对象。这个对象包含由特定类型的所有实例共享的属性和方法。
+每个对象都有一个内部属性 [[Prototype]]（在某些浏览器中称为 __proto__），指向它的原型对象。
+实例和原型的关系：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  当试图访问一个对象的属性或方法时，如果对象本身没有这个属性或方法，JavaScript 将会沿着这个对象的 [[Prototype]] 链向上查找，直到找到匹配的属性或方法或者到达原型链的末尾（即 null）为止。
+原型链的结构：
+###### &nbsp;
+
+####  2 实例和原型对象的关系
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  当试图访问一个对象的属性或方法时，如果对象本身没有这个属性或方法，JavaScript 将会沿着这个对象的 [[Prototype]] 链向上查找，直到找到匹配的属性或方法或者到达原型链的末尾（即 null）为止。
+###### &nbsp;
+
+####  3 原型链结构
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  每个对象都有一个 [[Prototype]] 指针，指向它的原型对象。
+&nbsp;&nbsp;&nbsp;&nbsp;  原型对象也有自己的 [[Prototype]]，形成链条，直到最顶层的原型对象为 null。
+###### &nbsp;
+
+</div>
+
+
+

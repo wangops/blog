@@ -1,0 +1,146 @@
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+
+<div className="mdx-box">
+#### Typescript 装饰器
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;装饰器是一种特殊类型的声明，可以附加到类声明、方法、属性或参数上，用来修改其行为或者添加元数据。装饰器在设计模式中广泛应用，它们提供了一种优雅的语法来通过简单的注释方式给类和类成员添加功能。
+###### &nbsp;
+#### 基本语法：
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        @decorator
+        class MyClass {
+            // class implementation
+        }
+
+        @decorator
+        function myFunction() {
+            // function implementation
+        }
+
+        class MyClass {
+            @decorator
+            myMethod() {
+                // method implementation
+            }
+
+            @decorator
+            myProperty: string;
+        }
+
+    
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+装饰器本质上是一个函数，它接收不同数量的参数，具体取决于它附加的位置（类、方法、属性或参数）。装饰器函数可以返回任何值，具体返回值的影响取决于装饰器的目的和上下文。
+###### &nbsp;
+####  类装饰器： 
+###### &nbsp;
+类装饰器在类声明之前声明，用来修改类的行为。类装饰器的声明如下：
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        function classDecorator<T extends { new(...args: any[]): {} }>(constructor: T) {
+            return class extends constructor {
+                // modified class behavior can be added here
+            };
+        }
+
+        @classDecorator
+        class MyClass {
+            // class implementation
+        }
+        
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+类装饰器可以接收一个构造函数作为其唯一参数，并且可以返回一个新的构造函数，从而可以修改类的行为或者用来实现混入（Mixin）等模式。
+###### &nbsp;
+
+####  方法装饰器：
+###### &nbsp;
+方法装饰器用来修改类的方法，它接收三个参数：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  对于静态方法是类的构造函数，对于实例方法是类的原型对象。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  方法名称。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  方法描述符。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        function methodDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+            // modify method behavior or descriptor here
+        }
+
+        class MyClass {
+            @methodDecorator
+            myMethod() {
+                // method implementation
+            }
+        }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+方法装饰器可以用来拦截方法的调用、修改方法的行为或者添加额外的元数据。
+###### &nbsp;
+
+#### 属性装饰器：
+###### &nbsp;
+属性装饰器用来修改类的属性定义，它接收两个参数：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  对于静态属性是类的构造函数，对于实例属性是类的原型对象。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  属性名称。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        function propertyDecorator(target: any, propertyKey: string) {
+            // modify property definition here
+        }
+
+        class MyClass {
+            @propertyDecorator
+            myProperty: string;
+        }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+属性装饰器可以用来为属性添加元数据或者修改属性的定义。
+###### &nbsp;
+
+#### 参数装饰器：
+###### &nbsp;
+参数装饰器用来修改类的方法或构造函数的参数，它接收三个参数：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 对于静态方法的参数是类的构造函数，对于实例方法的参数是类的原型对象。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  方法名称或者构造函数。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  参数在函数参数列表中的索引。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    function parameterDecorator(target: any, methodName: string, parameterIndex: number) {
+        // modify parameter definition here
+    }
+
+    class MyClass {
+        myMethod(@parameterDecorator param1: string, @parameterDecorator param2: number) {
+            // method implementation
+        }
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+参数装饰器可以用来拦截参数的传递、修改参数的默认值或者添加额外的元数据。
+###### &nbsp;
+</div>
+
+
+

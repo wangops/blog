@@ -1,0 +1,63 @@
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+
+<div className="mdx-box">
+用于异步地观察目标元素与其祖先元素或顶级文档视窗（viewport）交叉的情况。它提供了一种更有效率和性能更好的方法来实现各种观察情况，比如实现懒加载图片、无限滚动等场景。
+###### &nbsp;
+#### 1.主要特点和用途：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IntersectionObserver 是异步执行的，不会随着目标元素的变化而导致页面的重排或重绘，这一点与传统的监听滚动事件或者使用 getBoundingClientRect() 不同。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过 IntersectionObserver 可以在不影响主线程的情况下监听多个目标元素的可见性变化，这有助于减少不必要的计算和优化页面性能。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以通过配置选项（root、rootMargin、thresholds）来更精确地定义观察器的行为。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; root：指定目标元素的祖先元素，如果不指定则默认为浏览器视口。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; rootMargin：指定根元素的边界，用于扩展或缩小根元素的边界框，以便更早或更晚地触发可见性变化。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; thresholds：指定一个或多个阈值数组，表示目标元素交叉根元素的比例阈值，触发回调函数。
+###### &nbsp;
+#### 应用场景：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 图片懒加载：在图片即将进入视口时再加载真实图片。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 无限滚动：监听滚动到底部时加载更多内容。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 广告展示：当广告进入视口时开始播放或加载。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用户追踪：监控用户是否看到某些内容或广告的展示情况。
+###### &nbsp;
+#### 示例代码：
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    document.addEventListener("DOMContentLoaded", function() {
+        let lazyImages = document.querySelectorAll(".lazy-image");
+
+        let observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                let img = entry.target;
+                img.src = img.getAttribute("data-src");
+                observer.unobserve(img); // 停止观察该图片
+            }
+            });
+        }, {
+            root: null, // 默认为浏览器视口
+            rootMargin: '0px', // 观察窗口的边界
+            threshold: 0.1 // 10%的可见度时触发回调
+        });
+
+        lazyImages.forEach(img => {
+            observer.observe(img);
+        });
+        });
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+创建了一个 IntersectionObserver 实例，并通过配置项指定了观察的条件。当图片进入浏览器视口时，观察器的回调函数会执行，从而开始加载图片。这种方法比传统的滚动事件和 getBoundingClientRect() 更高效和易于管理，特别适合处理大量图片的懒加载场景。
+###### &nbsp;
+</div>
+
+
+

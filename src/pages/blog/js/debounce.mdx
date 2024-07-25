@@ -1,0 +1,90 @@
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+
+<div className="mdx-box">
+防抖（Debounce）和节流（Throttle）是两种常用于优化高频率执行的 JavaScript 函数的技术，特别是在处理用户输入、滚动事件等频繁触发的情况下非常有用。它们的目的都是减少函数执行的次数，提升性能和用户体验。
+###### &nbsp;
+#### 防抖（Debounce）
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;防抖的基本思想是，当事件触发后，一定时间内没有再次触发，才执行该事件。如果在这个时间内又触发了该事件，则重新开始计时。通俗来说，防抖会等待一段时间后执行函数，如果在这段时间内再次触发，则重新计时。
+###### &nbsp;
+#### 应用场景：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 输入框输入时的自动搜索功能（用户输入停止后执行搜索）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 窗口大小调整（停止调整大小后执行特定操作）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 按钮点击防抖（防止短时间内多次点击造成多次提交等问题）。
+###### &nbsp;
+#### 实现原理：
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        function debounce(func, delay) {
+            let timerId;
+            return function(...args) {
+                if (timerId) {
+                    clearTimeout(timerId);
+                }
+                timerId = setTimeout(() => {
+                    func.apply(this, args);
+                    timerId = null;
+                }, delay);
+            };
+        }
+
+        // 使用例子
+        let debounceSearch = debounce(function(query) {
+            console.log('Searching for:', query);
+        }, 300); // 延迟300毫秒执行
+
+        // 在输入框中输入文字时调用 debounceSearch
+
+    
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 节流（Throttle）
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 节流的基本思想是，当高频事件触发时，在一定时间段内只执行一次函数。节流会稀释函数的执行频率，确保函数在指定的时间段内至多执行一次。
+###### &nbsp;
+#### 应用场景：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 滚动事件监听（每隔一定时间执行处理函数，而不是每次滚动都执行）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 鼠标移动事件（限制鼠标移动的频率）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 拖拽时的事件触发（限制拖拽过程中的事件处理次数）。
+###### &nbsp;
+#### 实现原理：
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    function throttle(func, delay) {
+        let canRun = true;
+        return function(...args) {
+            if (!canRun) return;
+            canRun = false;
+            setTimeout(() => {
+                func.apply(this, args);
+                canRun = true;
+            }, delay);
+        };
+    }
+
+    // 使用例子
+    let throttleScroll = throttle(function() {
+        console.log('Scrolled');
+    }, 300); // 每300毫秒最多执行一次
+
+    // 监听滚动事件时调用 throttleScroll
+    
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>
+
+
+

@@ -1,0 +1,47 @@
+<div className="mdx-box">
+重绘（Repaint）和重排（Reflow）是浏览器渲染页面时的两个重要概念，它们的触发机制和影响有所不同。
+#### 重绘（Repaint）
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重绘是指当页面上的元素样式发生变化，但没有影响其布局（即位置和大小）时，浏览器会重新绘制这些元素。重绘不会影响页面的布局，因此性能消耗较小。
+###### &nbsp;
+#### 触发机制：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  元素的样式（如颜色、背景色、边框样式等）发生改变时，会触发重绘。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  元素通过 :hover 等伪类选择器改变样式时，会触发重绘。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  元素通过 JavaScript 的 style 属性改变样式时，会触发重绘。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  调用 window.requestAnimationFrame() 方法时，会触发重绘。
+###### &nbsp;
+
+#### 重排（Reflow）
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重排是指当页面上的元素发生布局变化时，浏览器会重新计算元素的几何属性（位置和大小），然后重新构建页面的渲染树。重排比重绘消耗的性能要大得多，因为它涉及到页面的整体布局和结构的改变。
+###### &nbsp;
+#### 触发机制：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  添加或删除可见的DOM元素时，会触发重排。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  改变窗口大小时，会触发重排。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  修改元素的位置、尺寸、内容时，会触发重排。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  改变元素的盒模型（比如边距、填充、边框大小等）时，会触发重排。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  修改浏览器的默认字体时，会触发重排。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  获取某些属性（如宽度、高度、偏移量等）时，浏览器为了返回正确的值，可能会触发重排。
+###### &nbsp;
+
+#### 性能优化建议
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于重排比重绘性能开销更大，因此在编写前端代码时应尽量减少重排的次数，具体建议包括：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  避免频繁操作样式，最好一次性更改样式，或者使用 CSS 类一次性修改多个元素的样式。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  避免在布局完成后频繁读取布局信息，如需要获取尺寸信息最好在布局稳定后进行。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  对需要进行动画的元素使用 transform 和 opacity，因为它们可以触发 GPU 加速，减少重排次数。
+###### &nbsp;
+</div>

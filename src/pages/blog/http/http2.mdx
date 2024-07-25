@@ -1,0 +1,32 @@
+<div className="mdx-box">
+HTTP/2 和 HTTP/1 有几个重要的区别，主要集中在性能、安全性和功能方面：
+###### &nbsp;
+#### 1 性能提升：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  多路复用（Multiplexing）：HTTP/2 可以在同一个连接上并行交错地发送多个请求和响应，而不像 HTTP/1 需要按顺序一个一个发送请求。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  头部压缩（Header Compression）：HTTP/2 使用 HPACK 算法对头部元数据进行压缩，减少了每个请求的数据量，提升了传输效率。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  服务器推送（Server Push）：HTTP/2 支持服务器在客户端请求之前主动推送相应资源，可以减少客户端请求的往返时间。
+###### &nbsp;
+
+#### 2 安全性：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  强制使用加密（Encryption Requirement）：HTTP/2 强制要求使用加密（TLS），而 HTTP/1 则是可选的。
+###### &nbsp;
+
+#### 3 协议格式：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  二进制分帧（Binary Framing）：HTTP/2 将所有传输的信息分割为更小的消息和帧，并对它们采用二进制格式的编码和解码，而 HTTP/1.x 是基于文本的格式。
+###### &nbsp;
+
+#### 4 头部处理：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  头部优化：HTTP/2 通过头部压缩和二进制格式处理头部信息，减少了不必要的重复传输，而 HTTP/1.x 的头部信息传输相对冗长。
+###### &nbsp;
+
+#### 5 推送技术：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  服务器推送：HTTP/2 支持服务器根据客户端请求的路径主动推送相关资源，这可以提升页面加载速度。
+###### &nbsp;
+</div>

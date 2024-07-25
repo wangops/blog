@@ -1,0 +1,221 @@
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+
+<div className="mdx-box">
+### Javascript 遍历
+###### &nbsp;
+#### 1. while 循环
+###### &nbsp;
+指定条件为真（true）时重复执行一段代码块。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        while (condition) {
+            // 代码块
+            // 在条件为真时执行的代码
+        }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 2. do-while 循环
+###### &nbsp;
+与while循环类似，但具有一个关键区别：它先执行循环体中的代码，然后再检查循环条件是否为真。这意味着，do while循环至少会执行一次循环体，即使初始条件为假。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        do {
+            // 代码块
+            // 在条件为真时执行的代码
+        } while (condition);
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 3. for 循环
+###### &nbsp;
+适用于已知循环次数的情况。它允许你初始化变量、设定循环条件、定义循环步骤，并在每次循环迭代时执行一段代码块。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+
+    for (let number = 1; number <= 5; number++) {
+
+    }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 4. for..in 循环
+###### &nbsp;
+for..in循环用于遍历对象的可枚举属性。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+
+        const person = {
+        name: 'John',
+        age: 30,
+        city: 'New York'
+        };
+
+        for (let key in person) {
+        console.log(key + ': ' + person[key]);
+        }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;for..in 循环会遍历对象的所有可枚举属性，包括从原型链继承的属性。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;迭代的顺序不能保证，可能在不同的JavaScript引擎中有所不同。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;为了避免遍历继承的属性，可以使用 hasOwnProperty 方法来检查属性是否直接属于对象本身。
+###### &nbsp;
+#### 5. map 循环
+###### &nbsp;
+它可以对数组中的每个元素进行操作，并返回一个新的数组，新数组的元素是原始数组元素调用函数处理后的结果。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        const newArray = array.map(function callback(currentValue, index, array) {
+        // 返回一个新数组元素
+        }, thisArg);
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; map() 不会修改原始数组，它返回一个新的数组。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 在处理稀疏数组时，map() 会跳过未定义的元素。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果 callback 函数不返回任何值，则新数组中相应位置的值将是 undefined。
+###### &nbsp;
+#### 6. forEach 循环
+###### &nbsp;
+forEach 是 JavaScript 数组的一个方法，用于迭代数组中的每个元素，并为每个元素执行指定的函数。它是一种更为简单的循环数组的方式，相较于传统的 for 循环更为方便和语义化。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+        array.forEach(function callback(currentValue, index, array) {
+        // 在此处执行操作
+        }, thisArg);
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; forEach 方法不会修改原始数组，它只是遍历数组中的每个元素并对其执行指定的操作。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 在处理稀疏数组时，forEach 会跳过未定义的元素。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果 callback 函数不返回任何值，或者直接使用 return 语句，它仍然会遍历数组的所有元素。
+###### &nbsp;
+#### 7. filter 循环
+###### &nbsp;
+用于筛选出满足条件的数组元素，并返回一个新的数组。它提供了一种简洁和功能强大的方式来过滤数组。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    const newArray = array.filter(function callback(currentValue, index, array) {
+    // 返回一个布尔值，指示是否保留当前元素到新数组中
+    }, thisArg);
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; filter() 方法不会修改原始数组，它返回一个新的数组，其中包含符合条件的元素。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果 callback 函数不返回布尔值（即返回 true 或 false），则 filter 方法将会抛出一个错误。
+###### &nbsp;
+#### 8. some 循环
+###### &nbsp;
+用于检查数组中是否至少有一个元素满足指定条件。它会遍历数组的每个元素，并在回调函数返回 true 的情况下立即停止遍历，并返回 true；如果所有元素都不满足条件，则返回 false。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    array.some(function callback(currentValue, index, array) {
+    // 返回一个布尔值，指示是否满足条件
+    }, thisArg);
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; some() 方法会在找到满足条件的元素时立即停止遍历，不会继续处理剩余的元素。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果数组为空，some() 将返回 false。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果 callback 函数不返回布尔值，some() 方法将会抛出一个错误。
+###### &nbsp;
+#### 9. every 循环
+###### &nbsp;
+用于检查数组中的所有元素是否满足指定条件。它会遍历数组的每个元素，并在回调函数对所有元素都返回 true 的情况下返回 true；如果有任何一个元素返回 false，则立即停止遍历，并返回 false。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    array.every(function callback(currentValue, index, array) {
+    // 返回一个布尔值，指示是否满足条件
+    }, thisArg);
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; every() 方法会在找到不满足条件的元素时立即停止遍历，不会继续处理剩余的元素。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果数组为空，every() 将返回 true，因为空数组中没有元素不满足条件。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果 callback 函数不返回布尔值，every() 方法将会抛出一个错误。
+###### &nbsp;
+#### 10. reduce 循环
+###### &nbsp;
+用于通过累积器函数（reducer function）将数组中的每个元素归纳为单个值。它可以用于计算数组元素的总和、求最大值或最小值，甚至构建一个新的数据结构。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    array.reduce(function callback(accumulator, currentValue, currentIndex, array) {
+    // 返回累积结果的值
+    }, initialValue);
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果数组为空且没有提供 initialValue，reduce() 将抛出一个错误。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; reduce() 方法执行时会遍历数组的每个元素，调用 callback 函数，并累积结果。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 在使用 reduce() 方法时，确保 callback 函数不会改变传入的参数，以免出现意外行为。
+###### &nbsp;
+#### 11. reduceRight 循环
+###### &nbsp;
+与 reduce() 方法类似，不过它从数组的末尾向前遍历数组元素，而不是从前向后。它也用于通过累积器函数将数组中的每个元素归纳为单个值。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    array.reduceRight(function callback(accumulator, currentValue, currentIndex, array) {
+    // 返回累积结果的值
+    }, initialValue);
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 注意事项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果数组为空且没有提供 initialValue，reduceRight() 将抛出一个错误。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; reduceRight() 方法执行时会遍历数组的每个元素，从末尾向前调用 callback 函数，并累积结果。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 在使用 reduceRight() 方法时，确保 callback 函数不会改变传入的参数，以免出现意外行为。
+###### &nbsp;
+</div>
+
+
+

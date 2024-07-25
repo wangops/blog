@@ -1,0 +1,40 @@
+<div className="mdx-box">
+HTTPS（HyperText Transfer Protocol Secure）是一种用于安全传输数据的网络协议，它基于HTTP协议，通过使用TLS（Transport Layer Security）或其前身SSL（Secure Sockets Layer）来加密通信内容。
+###### &nbsp;
+#### 1 建立安全连接：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  客户端（如浏览器）发起HTTPS请求时，首先与服务器的443端口建立TCP连接。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  之后，客户端会发送一个“ClientHello”消息给服务器，包含支持的TLS版本、加密算法等信息。
+###### &nbsp;
+
+#### 2 服务器验证：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  服务器接收到“ClientHello”后，会回应一个“ServerHello”消息，其中包含服务器选择的TLS版本、加密算法以及一个服务器证书（证书中包含了服务器的公钥）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  客户端收到服务器的证书后，会验证证书的有效性。这包括检查证书颁发机构的信任链，确保证书未过期，并且服务器的域名与证书中的域名匹配。
+###### &nbsp;
+
+#### 3 密钥交换
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 如果证书验证通过，客户端会生成一个随机数作为“Pre-master secret”，然后使用服务器的公钥加密这个随机数，并发送给服务器。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 服务器使用自己的私钥解密客户端发来的“Pre-master secret”，并使用客户端和服务器双方都知道的一些随机数，通过一种安全的算法生成一个“Master secret”。
+###### &nbsp;
+
+#### 4 对称加密会话：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  客户端和服务器使用“Master secret”生成对称加密算法所需的会话密钥（session key），这个会话密钥用于后续的通信加密和解密。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  通信双方现在使用对称加密算法（如AES）来加密和解密数据。对称加密效率高，但在建立安全连接时需要使用非对称加密来交换密钥。
+###### &nbsp;
+
+#### 5 安全通信：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  一旦握手完成，客户端和服务器之间的数据传输就会使用对称加密算法加密，保证了传输的数据的保密性和完整性。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  通信过程中，如果有任何数据被篡改或者中间人攻击的风险，TLS协议会发现并警告或中止连接，确保通信的安全性。
+###### &nbsp;
+总结来说，HTTPS通过使用TLS/SSL协议确保了数据在传输过程中的安全性，包括加密数据、验证服务器身份和保护数据完整性，从而有效防止了窃听和数据篡改等网络攻击。
+###### &nbsp;
+</div>

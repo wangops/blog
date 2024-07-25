@@ -1,0 +1,25 @@
+<div className="mdx-box">
+OPTIONS 请求是一种 HTTP 方法，它通常用于获取目标资源支持的通信选项，或者用于检查服务器的支持性。具体来说，OPTIONS 请求通常用于以下几个方面：
+###### &nbsp;
+#### 1 获取支持的方法（HTTP Methods）：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  当客户端发起 OPTIONS 请求时，服务器会返回一个包含该资源所支持的 HTTP 方法（比如 GET、POST、PUT、DELETE 等）的 Allow 头部字段。这使得客户端可以在实际发送请求之前，了解服务器对资源允许的操作。
+###### &nbsp;
+
+#### 2 CORS 预检请求（Cross-Origin Resource Sharing Preflight Request）：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;   在跨域请求中，浏览器在发送一些复杂请求（比如带有自定义头部或者使用某些类型的请求体的请求）之前，会自动发送一个 OPTIONS 请求进行预检。这是为了确保服务器允许该跨域请求，避免潜在的安全风险。
+###### &nbsp;
+
+#### 3 查看服务器的支持信息：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;   OPTIONS 请求可以帮助客户端了解服务器的配置和支持情况。例如，服务器可能返回 Allow 头部字段，表明支持的 HTTP 方法，或者返回其它自定义头部字段来提供更多信息。
+###### &nbsp;
+
+#### 4 检查通信选项：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  除了 HTTP 方法外，OPTIONS 请求也可以用于查询服务器支持的通信协议、编码方式等选项。服务器可以通过返回相应的头部字段来提供这些信息。
+###### &nbsp;
+总之，OPTIONS 请求是 HTTP 协议中的一种用于探测和协商通信选项的方法。它的主要用途是帮助客户端和服务器在通信之前，确认各种操作和约束条件，以确保有效和安全的交互。
+###### &nbsp;
+</div>
