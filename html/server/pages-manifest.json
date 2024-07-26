@@ -3,6 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/blog/http/getpost": "pages/blog/http/getpost.js",
-  "/blog/ts/annotation": "pages/blog/ts/annotation.js"
+  "/blog": "pages/blog.js",
+  "/blog/js/eventloop": "pages/blog/js/eventloop.js"
 }

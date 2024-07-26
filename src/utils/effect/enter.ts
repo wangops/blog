@@ -19,8 +19,6 @@ export const initCity = ()=>{
     console.log(el)
     el!.appendChild(renderer.domElement)
 
-    document.body.appendChild(VRButton.createButton( renderer ))
-    renderer.xr.enabled = true;
 
     const controls = new OrbitControls(camera,renderer.domElement)
     controls.enableDamping = true

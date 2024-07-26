@@ -70,6 +70,11 @@ export default function CV(){
         title:"Typescript - 装饰器",
         description:"装饰器是一种特殊类型的声明，可以附加到类声明、方法、属性或参数上，用来修改其行为或者添加元数据。装饰器在设计模式中广泛应用，它们提供了一种优雅的语法来通过简单的注释方式给类和类成员添加功能。",
         url:"/blog/ts/annotation"
+    },{
+        key:'blog-javsscript-apply',
+        title:"Javbascript - apply、bind、call",
+        description:"apply、call 和 bind 是用于控制函数执行时 this 上下文的方法。它们都是 Function 原型的一部分，虽然它们的目的类似，但用法略有不同。",
+        url:"/blog/js/apply"
     }]
 
     return (

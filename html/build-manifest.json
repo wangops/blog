@@ -27,15 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/blog/http/getpost": [
+    "/blog": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/blog/http/getpost.js"
-    ],
-    "/blog/ts/annotation": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/blog/ts/annotation.js"
+      "static/chunks/pages/blog.js"
     ]
   },
   "ampFirstPages": []
