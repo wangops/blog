@@ -3,6 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/blog": "pages/blog.js",
-  "/blog/js/eventloop": "pages/blog/js/eventloop.js"
+  "/blog/oc/import": "pages/blog/oc/import.js",
+  "/blog/vue/key": "pages/blog/vue/key.js"
 }

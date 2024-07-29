@@ -1,0 +1,48 @@
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+
+<div className="mdx-box">
+
+#### OC #import与#include
+###### &nbsp;
+#include 和 #import 是预处理指令，用于在编译过程中将外部文件（通常是头文件）的内容包含到源文件中。它们的使用与在C++中类似，但有一些细微的差异。
+###### &nbsp;
+####  1、#include
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  作用：#include 用于包含外部文件的内容，这些文件通常是头文件（header files），包含了函数声明、常量定义、类声明等信息。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  特点：#include 在包含文件时会简单地将文件的内容插入到当前位置，并且没有重复检查机制。如果同一个文件被多次包含，可能会导致重定义错误。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    #include <Foundation/Foundation.h>
+    #include "MyClass.h"
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+####  2、#import
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  作用：#import 同样用于包含外部文件的内容，但它具有防止重复包含的特性。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  #import 会在包含文件时检查是否已经包含过，如果已经包含，则不会重复包含，避免了多重定义的问题。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    #import <UIKit/UIKit.h>
+    #import "MyClass.h"
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 3、区别与使用建议：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  在Objective-C中，推荐使用 #import 而不是 #include，因为 #import 能够确保避免重复包含文件，提高了代码的健壮性和可维护性。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  尽管如此，#include 仍然是有效的，特别是在需要与其他语言（如C或C++）共享代码时。
+###### &nbsp;
+</div>
+
+
+

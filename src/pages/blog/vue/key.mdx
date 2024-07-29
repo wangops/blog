@@ -1,0 +1,66 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+
+<div className="mdx-box">
+#### Vue key的作用
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key 是用于帮助 Vue 识别虚拟 DOM 中 VNode 的一个特殊属性。它主要用于优化 Vue 的虚拟 DOM diff 算法的过程，确保在列表渲染时能够正确地复用和重新排序现有元素，从而提升性能和避免一些潜在的渲染问题。
+###### &nbsp;
+#### 主要作用
+###### &nbsp;
+##### 1、唯一标识：
+###### &nbsp;
+每个 key 必须是唯一的，用来标识 Vue 中每个节点的身份。Vue 根据 key 来区分 VNode，并尽可能复用已有的 DOM 元素，而不是每次都重新创建。
+###### &nbsp;
+##### 2、优化渲染效率：
+###### &nbsp;
+当数据发生变化时，Vue 使用 key 来尽可能地重用现有 DOM 元素。这样可以减少不必要的 DOM 操作，如删除和重新创建，从而提高渲染效率。
+###### &nbsp;
+##### 3、维护状态
+###### &nbsp;
+有了 key，Vue 能够更好地维护节点的状态。比如在列表中，如果一个元素的 key 发生了变化，Vue 就会认为这是一个新的元素，而不是复用之前的元素。
+###### &nbsp;
+####  具体应用场景： 
+###### &nbsp;
+##### 1、列表渲染：
+###### &nbsp;
+在使用 v-for 进行列表渲染时，为每个项添加唯一的 key，这样 Vue 可以根据 key 值追踪每个节点的身份。这对于动态列表的性能和正确性尤为重要。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    <div v-for="item in items" :key="item.id">
+        {{ item.text }}
+    </div>
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 1、动态组件：
+###### &nbsp;
+在使用 v-for 进行列表渲染时，为每个项添加唯一的 key，这样 Vue 可以根据 key 值追踪每个节点的身份。这对于动态列表的性能和正确性尤为重要。
+###### &nbsp;
+<SyntaxHighlighter language="javascript">
+  {`
+    <component :is="currentComponent" :key="componentKey"></component>
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+####  注意事项 
+###### &nbsp;
+##### 1、不建议使用索引作为 key：
+###### &nbsp;
+尽量避免使用数组的索引作为 key，因为索引在数据变动时可能会发生变化，导致 Vue 无法正确地识别和更新组件。
+###### &nbsp;
+##### 1、稳定的 key：
+###### &nbsp;
+key 应该在同一个列表内具有稳定性。不要在同一个列表中的不同渲染过程中使用不同的 key 生成策略，这会导致 Vue 无法正确地复用节点。。
+###### &nbsp;
+
+使用 key 是 Vue 中优化性能和确保正确渲染的重要手段，尤其在处理动态列表或者有动态组件切换的场景时，合理使用 key 可以有效提升应用的性能和用户体验。
+###### &nbsp;
+</div>
+
+
+

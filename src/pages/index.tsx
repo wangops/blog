@@ -11,6 +11,16 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-Vue-key',
+        title:"Vue - key的作用",
+        description:"key 是用于帮助 Vue 识别虚拟 DOM 中 VNode 的一个特殊属性。它主要用于优化 Vue 的虚拟 DOM diff 算法的过程，确保在列表渲染时能够正确地复用和重新排序现有元素，从而提升性能和避免一些潜在的渲染问题。",
+        url:"/blog/vue/key"
+    },{
+        key:'blog-OC-import',
+        title:"OC - #import与#include",
+        description:"#include 和 #import 是预处理指令，用于在编译过程中将外部文件（通常是头文件）的内容包含到源文件中。它们的使用与在C++中类似，但有一些细微的差异。",
+        url:"/blog/oc/import"
+    },{
         key:'blog-javascript-prototype',
         title:"Javascript - 原型链",
         description:"JavaScript中的原型链是指每个对象都有一个原型对象（prototype），对象可以通过原型链继承另一个对象的属性和方法。",
