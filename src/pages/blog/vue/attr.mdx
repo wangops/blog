@@ -1,0 +1,70 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Vue $attr
+###### &nbsp;
+$attrs 是一个属性，它保存了传递给组件但没有明确声明为 prop 的所有属性。这在创建可重用组件时特别有用，你可以通过 $attrs 将这些属性传递给子组件或 HTML 元素，而不需要将每个属性都声明为 prop。
+###### &nbsp;
+#### 基本用法
+###### &nbsp;
+如果你有一个组件接收属性，你可以通过 $attrs 访问这些属性。例如，如果你的父组件将 id 或 class 属性传递给子组件，子组件可以通过 $attrs 访问这些属性。
+###### &nbsp;
+#### 示例
+###### &nbsp;
+如果你有一个组件接收属性，你可以通过 $attrs 访问这些属性。例如，如果你的父组件将 id 或 class 属性传递给子组件，子组件可以通过 $attrs 访问这些属性。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    <template>
+        <ChildComponent id="child" class="example" data-custom="123">
+            Content here
+        </ChildComponent>
+    </template>
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+ChildComponent 可以使用 $attrs 访问这些属性：
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}               >
+  {`
+        <!-- ChildComponent.vue -->
+        <template>
+            <!-- 将 $attrs 绑定到一个元素上以传递属性 -->
+            <div v-bind="$attrs">
+                <slot></slot>
+            </div>
+        </template>
+
+        <script>
+            export default {
+            // 设置 inheritAttrs 为 false 以防止自动继承
+                inheritAttrs: false,
+            };
+        </script>
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 关键点
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; inheritAttrs：默认情况下，Vue 会自动将属性传递给组件的根元素。如果你想手动控制哪些属性被传递或以不同的方式处理它们，你可以在组件选项中设置 inheritAttrs: false。这会阻止 Vue 自动将属性绑定到根元素，从而允许你根据需要处理它们。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; inheritAttrs：与 v-bind 一起使用：为了将所有属性应用到一个元素或子组件上，使用 v-bind="$attrs"。这使得你可以方便地转发属性，而不需要明确列出每一个。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 与 props 结合使用：显式声明为 prop 的属性不会包含在 $attrs 中。例如，如果 ChildComponent 有一个 prop title，它不会出现在 $attrs 中。
+###### &nbsp;
+#### 何时使用 $attrs
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; inheritAttrs：构建可重用组件：当创建需要灵活性并接受任意属性的组件时。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; inheritAttrs：包装组件：如果你有一个组件包装了另一个组件或元素，并且你希望传递属性。
+###### &nbsp;
+</div>
+
+
+

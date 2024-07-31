@@ -27,15 +27,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/blog/oc/import": [
+    "/blog/web/cache": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/blog/oc/import.js"
+      "static/chunks/pages/blog/web/cache.js"
     ],
-    "/blog/vue/key": [
+    "/blog/web/reflow": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/blog/vue/key.js"
+      "static/chunks/pages/blog/web/reflow.js"
     ]
   },
   "ampFirstPages": []

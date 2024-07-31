@@ -11,12 +11,22 @@ export default function CV(){
     }
 
     const data = [{
-        key:'blog-Vue-key',
+        key:'blog-web-cache',
+        title:"Web - 缓存",
+        description:"缓存策略是指在网络请求和响应过程中，浏览器如何缓存数据的规则和方法。合理的缓存策略能够提高网页加载速度，减少网络带宽消耗，并改善用户体验。以下是一些常见的浏览器缓存策略和相关概念：",
+        url:"/blog/web/cache"
+    },{
+        key:'blog-vue-attr',
+        title:"Vue - $attr",
+        description:"$attrs 是一个属性，它保存了传递给组件但没有明确声明为 prop 的所有属性。这在创建可重用组件时特别有用，你可以通过 $attrs 将这些属性传递给子组件或 HTML 元素，而不需要将每个属性都声明为 prop。",
+        url:"/blog/vue/attr"
+    },{
+        key:'blog-vue-key',
         title:"Vue - key的作用",
         description:"key 是用于帮助 Vue 识别虚拟 DOM 中 VNode 的一个特殊属性。它主要用于优化 Vue 的虚拟 DOM diff 算法的过程，确保在列表渲染时能够正确地复用和重新排序现有元素，从而提升性能和避免一些潜在的渲染问题。",
         url:"/blog/vue/key"
     },{
-        key:'blog-OC-import',
+        key:'blog-oc-import',
         title:"OC - #import与#include",
         description:"#include 和 #import 是预处理指令，用于在编译过程中将外部文件（通常是头文件）的内容包含到源文件中。它们的使用与在C++中类似，但有一些细微的差异。",
         url:"/blog/oc/import"
