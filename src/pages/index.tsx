@@ -11,6 +11,21 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-javascript-asyncawait',
+        title:"Javascript - async/await",
+        description:"async 和 await 是 JavaScript 中用于处理异步操作的关键字，它们使得异步代码的编写和阅读变得更加简洁和直观",
+        url:"/blog/js/asyncawait"
+    },{
+        key:'blog-algorithm-quicksort',
+        title:"算法 - 快速排序",
+        description:"其基本思想是通过重复比较相邻的元素，并在必要时交换它们的位置，从而将最大或最小的元素逐渐“冒泡”到序列的一端。这个过程会继续进行，直到整个序列排序完成。",
+        url:"/blog/algorithm/quicksort"
+    },{
+        key:'blog-algorithm-bubble',
+        title:"算法 - 冒泡排序",
+        description:"其基本思想是通过重复比较相邻的元素，并在必要时交换它们的位置，从而将最大或最小的元素逐渐“冒泡”到序列的一端。这个过程会继续进行，直到整个序列排序完成。",
+        url:"/blog/algorithm/bubble"
+    },{
         key:'blog-web-cache',
         title:"Web - 缓存",
         description:"缓存策略是指在网络请求和响应过程中，浏览器如何缓存数据的规则和方法。合理的缓存策略能够提高网页加载速度，减少网络带宽消耗，并改善用户体验。以下是一些常见的浏览器缓存策略和相关概念：",

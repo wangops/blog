@@ -1,0 +1,55 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+<div className="mdx-box">
+基本思想是通过一个基准元素将数据分成两个子集，然后递归地对这两个子集进行排序。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;1. 选择基准：从数组中选择一个元素作为基准（pivot）。选择基准的方法有多种，例如选择第一个元素、最后一个元素、随机选择或者选择中间元素等。
+###### &nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;2. 分区操作：将数组中的所有元素与基准进行比较，将小于基准的元素移到基准的左侧，将大于基准的元素移到基准的右侧。基准元素最终会被放置在其正确的位置上。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;4. 递归排序：对基准元素左侧和右侧的子数组递归地应用快速排序，直到每个子数组都被排序完成。
+###### &nbsp;
+#### 代码如下
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // 快速排序函数
+    function quickSort(arr) {
+        if (arr.length <= 1) {
+            return arr; // 基本情况：数组长度为 0 或 1 时已排序
+        }
+        
+        // 选择基准（这里选择了数组的最后一个元素）
+        const pivot = arr[arr.length - 1];
+        
+        // 分别为小于基准、等于基准、大于基准的数组创建新数组
+        const left = [];
+        const middle = [];
+        const right = [];
+        
+        // 将每个元素按与基准的比较分到不同数组中
+        for (const item of arr) {
+            if (item < pivot) {
+                left.push(item);
+            } else if (item === pivot) {
+                middle.push(item);
+            } else {
+                right.push(item);
+            }
+        }
+        
+        // 递归调用快速排序并将结果合并
+        return [...quickSort(left), ...middle, ...quickSort(right)];
+    }
+
+    // 示例使用
+    const array = [3, 6, 8, 10, 1, 2, 1];
+    const sortedArray = quickSort(array);
+    console.log(sortedArray); // 输出: [1, 1, 2, 3, 6, 8, 10]
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>

@@ -1,0 +1,40 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+<div className="mdx-box">
+其基本思想是通过重复比较相邻的元素，并在必要时交换它们的位置，从而将最大或最小的元素逐渐“冒泡”到序列的一端。这个过程会继续进行，直到整个序列排序完成。冒泡排序的主要步骤如下：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;1. 比较相邻的元素：从序列的开始位置，比较相邻的两个元素。
+###### &nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;2. 交换元素：如果这两个元素的顺序错误（即第一个元素大于第二个元素时），则交换它们的位置。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;3. 重复步骤：继续对下一对相邻元素进行相同的操作。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;4. 每一轮冒泡：完成一轮排序后，最大的元素会被移动到序列的末尾。在接下来的轮次中，排序会减少需要处理的元素数量。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;5. 终止条件：当没有元素需要交换时，说明序列已经排序完成，可以终止算法。
+###### &nbsp;
+#### 代码如下
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+        function bubbleSort(arr) {
+        let n = arr.length;
+        // 外层循环遍历所有元素
+        for (let i = 0; i < n; i++) {
+            // 内层循环用于比较相邻的元素
+            for (let j = 0; j < n - i - 1; j++) {
+                // 如果相邻元素顺序错误，则交换它们
+                if (arr[j] > arr[j + 1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>

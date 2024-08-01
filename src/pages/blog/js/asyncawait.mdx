@@ -1,0 +1,68 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+<div className="mdx-box">
+async 和 await 是 JavaScript 中用于处理异步操作的关键字，它们使得异步代码的编写和阅读变得更加简洁和直观
+### 基本概念
+###### &nbsp;
+#### 异步操作：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;异步操作指的是那些需要一段时间才能完成的操作，比如从服务器获取数据、读取文件、延迟操作等。在 JavaScript 中，异步操作通常会使用 Promise 对象来处理。
+###### &nbsp;
+#### Promise
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Promise 是一个表示异步操作最终完成或失败的对象。它有三个状态：
+Pending（等待中）：初始状态，既不是成功也不是失败。
+Fulfilled（已成功）：操作成功完成。
+Rejected（已失败）：操作失败。
+###### &nbsp;
+#### async 和 await
+###### &nbsp;
+async 和 await 是基于 Promise 的语法糖，使得处理异步操作更像同步代码。它们是 ES2017（ES8）引入的。
+###### &nbsp;
+#### async函数
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;定义：一个使用 async 关键字定义的函数称为异步函数（async function）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;返回值：async 函数总是返回一个 Promise 对象。即使函数内部没有使用 Promise，也会自动将结果封装在一个 Promise 中。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    async function example() {
+        return "Hello, world!";
+    }
+
+    example().then(result => console.log(result)); // 输出: "Hello, world!"
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### await 表达式
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;定义：await 用于等待一个 Promise 对象的完成。它只能在 async 函数内部使用。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;行为：当 await 等待的 Promise 被解决（fulfilled）时，await 表达式的结果就是 Promise 的结果。如果 Promise 被拒绝（rejected），await 会抛出错误。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    async function fetchData() {
+        let data = await fetch('https://api.example.com/data');
+        let json = await data.json();
+        return json;
+    }
+
+    fetchData().then(result => console.log(result)).catch(error => console.log(error));
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 运行循环与await
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;在 JavaScript 中，微任务（microtasks）是与宏任务（macrotasks）相对的概念。微任务队列是用来处理异步操作完成后的回调的队列，比如 Promise 的 .then() 或 .catch() 回调，以及 async 函数内部的 await 表达式。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;微任务队列主要用于处理 Promise 的回调和其他一些需要在当前事件循环结束之前完成的任务。相较于宏任务（如 setTimeout、setInterval 和 I/O 操作），微任务的优先级更高，确保它们在当前事件循环的结束之前被执行。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;当 await 表达式遇到一个 Promise 时，它会暂停 async 函数的执行，直到 Promise 被解决（fulfilled）或者拒绝（rejected）。在 Promise 被解决之后，await 语句之后的代码会被放入微任务队列中，并在当前宏任务结束后执行。
+###### &nbsp;
+了解这些概念可以帮助你更好地理解和编写异步代码。
+###### &nbsp;
+</div>
