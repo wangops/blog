@@ -11,6 +11,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-javascript-trash',
+        title:"Javascript - 垃圾回收",
+        description:"垃圾回收机制是一种自动内存管理机制",
+        url:"/blog/js/trash"
+    },{
         key:'blog-javascript-asyncawait',
         title:"Javascript - async/await",
         description:"async 和 await 是 JavaScript 中用于处理异步操作的关键字，它们使得异步代码的编写和阅读变得更加简洁和直观",
