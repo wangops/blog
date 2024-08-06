@@ -1,0 +1,29 @@
+<div className="mdx-box">
+window.onload 和 DOMContentLoaded 都是 JavaScript 中处理页面加载事件的重要方式，它们有一些关键的区别：
+###### &nbsp;
+#### 1. 触发时机
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; window.onload: 当整个页面及其依赖资源（如图片、样式表等）全部加载完成后触发。这意味着在所有内容（包括外部资源）完全加载后才会执行绑定的事件处理函数。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; DOMContentLoaded: 当初始的 HTML 文档被完全加载和解析完成之后，不需要等待样式表、图片等外部资源，就会触发。这时候页面的 DOM 树已经构建完成，但是外部资源可能还没有加载完成。
+###### &nbsp;
+#### 2. 执行时机
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; window.onload 只有在页面的所有资源都加载完成后才会执行。这包括页面中的所有图片、样式表、脚本等。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; DOMContentLoaded 在 DOM 构建完成后即触发，不需要等待外部资源加载完成。
+###### &nbsp;
+#### 3. 适用场景
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; DOMContentLoaded 更适合在页面结构完全加载后立即执行一些操作，比如初始化页面上的一些 JavaScript 功能，而不需要等待所有资源加载完成。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; window.onload 更适合在页面及所有资源加载完成后再执行一些需要依赖完整页面状态的操作，比如处理页面上的图片、计算页面尺寸等。
+###### &nbsp;
+#### 4. 性能影响
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 由于 DOMContentLoaded 触发时不需要等待外部资源加载完成，所以可以提早执行绑定的事件处理函数，从而改善用户感知的加载速度。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; window.onload 则会等待所有资源加载完成后才执行，可能会导致用户在等待时间较长时感觉页面加载缓慢。
+###### &nbsp;
+
+</div>

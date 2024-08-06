@@ -11,6 +11,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-onload',
+        title:"Web - window.onload与DomContentLoad",
+        description:"window.onload 和 DOMContentLoaded 都是 JavaScript 中处理页面加载事件的重要方式，它们有一些关键的区别",
+        url:"/blog/web/onload"
+    },{
         key:'blog-javascript-trash',
         title:"Javascript - 垃圾回收",
         description:"垃圾回收机制是一种自动内存管理机制",
