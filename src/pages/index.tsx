@@ -7,10 +7,15 @@ export default function CV(){
         router.push("/blog")
     }
     const to3D = ()=>{
-        router.push("/3D/city")
+        router.push("/3D/city")      
     }
 
     const data = [{
+        key:'blog-web-defer',
+        title:"Web - defer与async",
+        description:"defer 和 async 是用于 <script> 标签的属性，用于控制脚本的加载和执行方式。它们都涉及到异步加载 JavaScript 文件，但它们的行为有所不同。下面是对 defer 和 async 属性的详细介绍及其区别：",
+        url:"/blog/web/defer"
+    },{
         key:'blog-web-onload',
         title:"Web - window.onload与DomContentLoad",
         description:"window.onload 和 DOMContentLoaded 都是 JavaScript 中处理页面加载事件的重要方式，它们有一些关键的区别",
