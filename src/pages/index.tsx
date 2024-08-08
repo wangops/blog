@@ -11,6 +11,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-typescript-type',
+        title:"Typescript - 类型编程",
+        description:"类型编程（Type Programming）指的是利用 TypeScript 的类型系统来实现复杂的类型逻辑和代码推断。以下是一些常见的 TypeScript 类型编程技术和模式：",
+        url:"/blog/ts/type"
+    },{
         key:'blog-web-defer',
         title:"Web - defer与async",
         description:"defer 和 async 是用于 <script> 标签的属性，用于控制脚本的加载和执行方式。它们都涉及到异步加载 JavaScript 文件，但它们的行为有所不同。下面是对 defer 和 async 属性的详细介绍及其区别：",

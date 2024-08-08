@@ -1,0 +1,411 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Typescript 类型编程
+###### &nbsp;
+类型编程（Type Programming）指的是利用 TypeScript 的类型系统来实现复杂的类型逻辑和代码推断。以下是一些常见的 TypeScript 类型编程技术和模式：
+###### &nbsp;
+### 一、类型
+###### &nbsp;
+#### 1. 基础类型
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 基本类型：string, number, boolean, null, undefined, void, any, unknown, never
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 复合类型：object, array, tuple, enum
+###### &nbsp;
+#### 2. 类型别名与接口
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type Person = {
+        name: string;
+        age: number;
+        };
+
+        interface PersonInterface {
+        name: string;
+        age: number;
+        }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+type 和 interface 都可以用来定义对象的结构，但 type 更灵活，可以表示联合类型、交叉类型等。
+###### &nbsp;  
+#### 3. 联合类型与交叉类型
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 联合类型：表示可以是几种类型之一
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type ID = string | number;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 交叉类型：将多个类型合并为一个类型
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type Employee = Person & { employeeId: number };
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 4. 条件类型
+###### &nbsp;
+条件类型是一种根据条件选择不同类型的技术。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type TrueType = true extends true ? 'Yes' : 'No';  // 结果为 'Yes'
+    type FalseType = false extends true ? 'Yes' : 'No'; // 结果为 'No'
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 5. 映射类型
+###### &nbsp;
+映射类型允许你根据现有类型创建新的类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type ReadonlyPerson = Readonly<Person>;
+    type PartialPerson = Partial<Person>;
+    type RequiredPerson = Required<Person>;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 6. 模板字面量类型
+###### &nbsp;
+模板字面量类型可以用来创建复杂的字符串字面量类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type ClickEvent = 'onClick' | 'onChange' | 'onSubmit';
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 7. 高级类型
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 类型推断：TypeScript 会自动推断变量的类型。
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    let num = 42; // TypeScript 推断 num 为 number
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 类型守卫：类型守卫用于缩小类型的范围
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    function isString(value: any): value is string {
+        return typeof value === 'string';
+    }
+
+    let someValue: any = "Hello, TypeScript!";
+
+    if (isString(someValue)) {
+        console.log(someValue.toUpperCase()); // TypeScript 知道 someValue 是 string
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 8. 类型推导与映射
+###### &nbsp;
+可以使用 keyof 和 typeof 操作符来实现类型推导和映射。
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type PersonKeys = keyof Person; // 'name' | 'age'
+    type PersonType = typeof person; // 与 'Person' 类型相同
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 9. 泛型
+###### &nbsp;
+泛型允许你创建能够处理不同类型的组件。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    function identity<T>(arg: T): T {
+        return arg;
+    }
+
+    let output = identity<string>("myString"); // 类型参数 T 被推断为 string
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 10. 递归类型
+###### &nbsp;
+递归类型用于描述那些嵌套的数据结构。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type TreeNode<T> = {
+        value: T;
+        children?: TreeNode<T>[];
+    };
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 11. 类型映射
+###### &nbsp;
+使用 in 关键字可以映射类型中的所有属性。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type MappedType<T> = {
+        [P in keyof T]: T[P];
+    };
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+### 二、类型推导
+###### &nbsp;
+#### 1. type
+###### &nbsp;
+用于定义类型别名，允许你创建自定义的类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type ID = string | number;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 2. interface
+###### &nbsp;
+用于定义对象的结构，支持扩展和实现。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    interface Person {
+        name: string;
+        age: number;
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 3. extends
+###### &nbsp;
+用于扩展类型或接口，或在条件类型中用于检查类型是否符合条件。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    interface Employee extends Person {
+        employeeId: number;
+    }
+
+    type IsString<T> = T extends string ? 'Yes' : 'No';
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 4. keyof
+###### &nbsp;
+用于获取某个类型的所有属性名（键）的联合类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type PersonKeys = keyof Person; // 'name' | 'age'
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 5. typeof
+###### &nbsp;
+用于获取变量的类型，通常与 keyof 结合使用来获取值的类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    const person = { name: 'Alice', age: 30 };
+    type PersonType = typeof person; // { name: string; age: number; }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 6. in
+###### &nbsp;
+用于在映射类型中迭代所有的键，也可以用于条件类型中检查某个类型是否具有特定的属性。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type ReadOnlyPerson = {
+        readonly [K in keyof Person]: Person[K];
+    };
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 7. as
+###### &nbsp;
+用于类型断言，将值从一种类型转换为另一种类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    let someValue: any = "Hello";
+    let strLength: number = (someValue as string).length;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 8. infer
+###### &nbsp;
+用于条件类型中，推断出某个类型的具体类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    type ReturnType<T> = T extends (args: any) => infer R ? R : never;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 9. never
+###### &nbsp;
+表示从不正常返回的类型，通常用于表示某些无法发生的状态或无限循环的函数返回值。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    function throwError(message: string): never {
+        throw new Error(message);
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 10. void
+###### &nbsp;
+表示没有任何返回值的类型，通常用于函数没有返回值的情况。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    function logMessage(message: string): void {
+        console.log(message);
+    }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 11. unknown
+###### &nbsp;
+表示任何类型，但在使用之前需要进行类型检查。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+    function processValue(value: unknown) {
+        if (typeof value === 'string') {
+            console.log(value.toUpperCase()); // TypeScript 知道 value 是 string
+        }
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 12. `Partial<T>`
+###### &nbsp;
+将类型 T 中的所有属性变为可选的。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type PartialPerson = Partial<Person>;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 13. `Required<T>`
+###### &nbsp;
+将类型 T 中的所有属性变为必需的。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type PartialPerson = Required<Person>;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 14. `Readonly<T>`
+###### &nbsp;
+将类型 T 中的所有属性变为只读的。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type ReadonlyPerson = Readonly<Person>;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 15. `Pick<T, K>`
+###### &nbsp;
+从类型 T 中选择出属性 K 的子集。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type NameOnly = Pick<Person, 'name'>;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 16. `Record<T, K>`
+###### &nbsp;
+构造一个对象类型，其属性 K 的值都是 T 类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type Dictionary<T> = Record<string, T>;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 17. `Omit<T, K>`
+###### &nbsp;
+从类型 T 中排除属性 K。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type PersonWithoutAge = Omit<Person, 'age'>;
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 18. `Exclude<T, U>`
+###### &nbsp;
+从类型 T 中排除 U 类型的值。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type ExcludeString = Exclude<'a' | 'b' | 'c', 'b'>; // 'a' | 'c'
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 19. `Extract<T, U>`
+###### &nbsp;
+从类型 T 中提取出 U 类型的值。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type ExtractString = Extract<'a' | 'b' | 'c', 'a' | 'b'>; // 'a' | 'b'
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 20. `NonNullable<T, U>`
+###### &nbsp;
+从类型 T 中排除 null 和 undefined。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        type NonNullableString = NonNullable<string | null | undefined>; // string
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 21. `InstanceType<T, U>`
+###### &nbsp;
+提取构造函数类型 T 的实例类型。
+###### &nbsp;
+<SyntaxHighlighter language="typescript" style={darcula}>
+  {`
+        class PersonClass {
+            name: string;
+            constructor(name: string) {
+                this.name = name;
+            }
+        }
+        type PersonInstance = InstanceType<typeof PersonClass>; // PersonClass
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>
+
+
+
