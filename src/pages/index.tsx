@@ -11,6 +11,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-javsscript-amdcmd',
+        title:"Javascript - CommonJS、AMD 和 CMD",
+        description:"CommonJS、AMD 和 CMD 是 JavaScript 模块化的三种不同规范和风格，主要用于解决 JavaScript 代码的模块化问题。",
+        url:"/blog/js/amdcmd"
+    },{
         key:'blog-typescript-type',
         title:"Typescript - 类型编程",
         description:"类型编程（Type Programming）指的是利用 TypeScript 的类型系统来实现复杂的类型逻辑和代码推断。以下是一些常见的 TypeScript 类型编程技术和模式：",

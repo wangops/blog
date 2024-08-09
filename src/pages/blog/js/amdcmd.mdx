@@ -1,0 +1,92 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+<div className="mdx-box">
+CommonJS、AMD 和 CMD 是 JavaScript 模块化的三种不同规范和风格，主要用于解决 JavaScript 代码的模块化问题。下面是这三种模块化规范的详细介绍：
+###### &nbsp;
+### 1. CommonJS
+###### &nbsp;
+CommonJS 是一种模块化规范，主要用于服务器端 JavaScript（如 Node.js）。它允许你将 JavaScript 代码拆分成多个模块，并通过 require 和 module.exports 来导入和导出模块。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;同步加载：CommonJS 模块是在运行时同步加载的，这适合于服务器端的环境，因为在服务器上，加载模块的速度通常是可以接受的。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;模块导入：使用 require 函数来导入模块，例：const myModule = require('./myModule');
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;模块导出：通过 module.exports 或 exports 对象来导出模块，例：module.exports = myFunction;
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;单例模式：每个模块只会被加载一次，之后再请求相同模块时，返回的是缓存中的实例。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // math.js
+    const add = (a, b) => a + b;
+    const subtract = (a, b) => a - b;
+    module.exports = { add, subtract };
+
+    // app.js
+    const math = require('./math');
+    console.log(math.add(1, 2)); // 输出 3
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+### 2. AMD（Asynchronous Module Definition）
+###### &nbsp;
+AMD 是一种为浏览器环境设计的模块化规范，旨在解决 JavaScript 的模块加载问题，支持异步加载模块。最著名的实现是 RequireJS。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;异步加载：AMD 支持异步加载模块，适合客户端应用，因为它可以避免阻塞页面加载。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;模块定义：使用 define 函数定义模块，例：define(['dependency'], factory);
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;依赖管理：可以通过 define 函数的第一个参数指定模块的依赖，第二个参数是一个工厂函数，用于创建模块。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // math.js
+    define([], function() {
+        return {
+            add: function(a, b) { return a + b; },
+            subtract: function(a, b) { return a - b; }
+        };
+    });
+
+    // app.js
+    require(['math'], function(math) {
+        console.log(math.add(1, 2)); // 输出 3
+    });
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+
+### 3. CMD（Common Module Definition）
+###### &nbsp;
+CMD 是一种为浏览器环境设计的模块化规范，受到 CommonJS 规范的影响，但在设计上更注重兼容性和灵活性。最著名的实现是 SeaJS。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;异步加载：CMD 也支持异步加载模块，类似于 AMD。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;模块定义：使用 define 函数定义模块，例：`define(function(require, exports, module) { ... })`;
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 依赖管理：通过 require 函数引入依赖，依赖声明在模块内，模块依赖在执行时才会加载。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+  // math.js
+    define(function(require, exports, module) {
+        exports.add = function(a, b) { return a + b; };
+        exports.subtract = function(a, b) { return a - b; };
+    });
+
+    // app.js
+    require(['math'], function(math) {
+        console.log(math.add(1, 2)); // 输出 3
+    });
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+</div>
