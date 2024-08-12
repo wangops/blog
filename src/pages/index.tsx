@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import BlogItem from "@/components/BlogItem";
+import { useEffect } from "react";
 export default function CV(){
     const router = useRouter()
+    
     const toBlog = ()=>{
         router.push("/blog")
     }
@@ -11,6 +13,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-cors',
+        title:"WEB - CORS",
+        description:"CORS（跨源资源共享，Cross-Origin Resource Sharing）是一个浏览器安全功能，它允许服务器指定哪些源可以访问其资源。简单来说，CORS 是一种机制，用于解决网页从不同源（域、协议或端口）请求资源时的安全问题。",
+        url:"/blog/web/cors"
+    },{
         key:'blog-javsscript-amdcmd',
         title:"Javascript - CommonJS、AMD 和 CMD",
         description:"CommonJS、AMD 和 CMD 是 JavaScript 模块化的三种不同规范和风格，主要用于解决 JavaScript 代码的模块化问题。",

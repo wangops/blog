@@ -1,0 +1,85 @@
+<div className="mdx-box">
+浏览器缓存策略是指在网络请求和响应过程中，浏览器如何缓存数据的规则和方法。合理的缓存策略能够提高网页加载速度，减少网络带宽消耗，并改善用户体验。以下是一些常见的浏览器缓存策略和相关概念：
+###### &nbsp;
+#### 1. CORS 的工作原理
+###### &nbsp;
+当一个网页尝试从不同源（例如，从 https://example.com 请求 https://api.example.com/data）访问资源时，浏览器会发起一个 CORS 请求。这个请求包含一些特定的 HTTP 头部，用于指示服务器接受跨源请求。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 预检请求（Preflight Request）： 对于某些类型的请求（如 PUT、DELETE 或自定义请求头），浏览器会先发送一个 <a href="/blog/http/options">OPTIONS</a> 请求到服务器，以确认实际请求是否被允许。这个请求包含 Access-Control-Request-Method 和 Access-Control-Request-Headers 头部
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 实际请求（Actual Request）： 如果服务器在预检请求中允许了跨源访问，浏览器会发送实际的请求（如 GET、POST），并附加 Origin 头部。服务器响应中会包含 Access-Control-Allow-Origin 头部，指定允许访问的源。
+###### &nbsp;
+
+#### 2. CORS请求头
+###### &nbsp;
+##### Origin
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 指明发起请求的源（包括协议、域名和端口）。用于服务器判断请求是否来自允许的源。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Origin: https://example.com
+###### &nbsp;
+
+##### Access-Control-Request-Method
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在预检请求中，告知服务器实际请求将使用的 HTTP 方法。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Request-Method: POST
+###### &nbsp;
+
+##### Access-Control-Request-Headers
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在预检请求中，列出实际请求中使用的自定义头部。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;示例: Access-Control-Request-Headers: Content-Type, Authorization
+###### &nbsp;
+
+##### Access-Control-Allow-Origin
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在服务器响应中，指定允许访问资源的源（或 * 允许所有源）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Allow-Origin: https://example.com
+###### &nbsp;
+
+##### Access-Control-Allow-Methods
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在服务器响应中，列出允许的 HTTP 方法。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Allow-Methods: GET, POST, PUT
+###### &nbsp;
+
+
+##### Access-Control-Allow-Headers
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在服务器响应中，列出允许的请求头部。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Allow-Headers: Content-Type, Authorization
+###### &nbsp;
+
+##### Access-Control-Allow-Credentials
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在服务器响应中，指示是否允许发送凭证（如 Cookies）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Allow-Credentials: true
+###### &nbsp;
+
+##### Access-Control-Expose-Headers
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在服务器响应中，列出可以被访问的响应头部。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Expose-Headers: X-Custom-Header
+###### &nbsp;
+
+##### Access-Control-Max-Age
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在服务器响应中，指定预检请求的结果可以缓存的时间（单位为秒）
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Max-Age: 3600
+###### &nbsp;
+
+##### Access-Control-Request-Private-Network
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 用途: 在预检请求中，指明请求是否会访问私有网络（仅在某些浏览器中使用）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 示例: Access-Control-Request-Private-Network: true
+###### &nbsp;
+</div>
