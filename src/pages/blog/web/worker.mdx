@@ -1,0 +1,116 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Web worker
+###### &nbsp;
+Web Workers 是一种在浏览器中运行 JavaScript 的技术，允许你在后台线程中执行代码，从而不会阻塞用户界面。这使得 Web 应用能够在执行耗时操作时保持响应性。
+###### &nbsp;
+#### 基本概念
+###### &nbsp;
+##### 1、主线程与后台线程：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 主线程：处理用户界面和事件。
+###### &nbsp;
+##### 2、创建和使用 Web Worker：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Web Workers 通过 Worker 构造函数创建，传入的参数是一个 JavaScript 文件的 URL，该文件会在后台线程中执行。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 你可以通过 postMessage 方法向 Worker 发送消息，并通过 onmessage 事件接收来自 Worker 的消息
+###### &nbsp;
+##### 3、生命周期：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Worker 线程从创建到结束都有一个生命周期。你可以通过 terminate 方法立即结束 Worker 的生命周期。
+###### &nbsp;
+#### 基本用法
+###### &nbsp;
+##### 1、创建worker：
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // main.js
+    const worker = new Worker('worker.js');
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 2、在 Worker 中执行任务：
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // worker.js
+    self.onmessage = function(e) {
+        console.log('Message received from main script:', e.data);
+        // 执行耗时操作
+        let result = e.data * 2;
+        // 发送结果回主线程
+        self.postMessage(result);
+    };
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 3、 发送和接收消息：
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // main.js
+    worker.postMessage(10); // 发送消息到 Worker
+
+    worker.onmessage = function(e) {
+        console.log('Message received from worker:', e.data);
+    };
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 特性和限制
+###### &nbsp;
+##### 1、异步执行：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Web Workers 是异步的，它们的执行不会阻塞主线程。
+###### &nbsp;
+##### 2、通信机制：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Worker 和主线程之间的通信是通过消息传递的。postMessage 方法用于发送消息，onmessage 事件用于接收消息。
+###### &nbsp;
+##### 3、线程安全：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Worker 线程之间的数据传递是通过序列化的（例如 JSON）。因此，你不能直接共享内存，但可以通过传递数据来间接共享。
+###### &nbsp;
+##### 4、没有 DOM 访问：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Web Worker 不能直接访问 DOM、window 对象、document 或者 localStorage。它们只能使用 Web APIs，如 fetch、XMLHttpRequest、IndexedDB 等。
+###### &nbsp;
+##### 5、跨域限制：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Worker 的脚本必须来自与主页面相同的源，除非使用 blob: URL 创建 Worker。
+###### &nbsp;
+##### 6、Worker 的 types：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 除了普通的 Worker，还有专门的 SharedWorker 和 ServiceWorker。SharedWorker 可以被多个浏览器窗口共享，而 ServiceWorker 用于处理离线缓存和推送通知等背景任务。
+###### &nbsp;
+#### 进阶使用
+###### &nbsp;
+##### 1、Blob URL：
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 可以使用 Blob 对象创建 Worker，而不是依赖外部文件。这对于动态生成 Worker 代码非常有用。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+        const blob = new Blob([
+            self.onmessage = function(e) {
+                self.postMessage(e.data * 2);
+            };
+        ], { type: 'application/javascript' });
+
+        const worker = new Worker(URL.createObjectURL(blob));
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>
+
+
+
