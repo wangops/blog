@@ -1,0 +1,78 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Shadow Dom
+###### &nbsp;
+Web Shadow DOM 是一种网页组件技术，允许开发者创建封装的组件，其内部结构和样式与外部页面隔离。
+###### &nbsp;
+#### 特点
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 使用 `element.attachShadow({ mode: 'open' })` 创建 Shadow DOM，内部的样式和脚本与外部页面隔离。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Open Mode 允许外部 JavaScript 访问 Shadow DOM，Closed Mode 则完全封闭。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 组件内的样式只作用于 Shadow DOM 内部元素，通过 `<style>` 标签定义，避免了样式冲突。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 使用 `<slot>` 元素将外部内容插入到 Shadow DOM 的特定位置，支持组件与外部内容的交互。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 插槽选择器如 `::slotted(span)` 允许对插槽中的内容应用样式。
+###### &nbsp;
+#### 示例代码
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+        <my-component></my-component>
+        <script>
+            class MyComponent extends HTMLElement {
+                constructor() {
+                    super();
+                    const shadow = this.attachShadow({ mode: 'open' });
+                    shadow.innerHTML = '
+                        <style>
+                            p { color: red; }
+                        </style>
+                        <p>Hello from Shadow DOM!</p>
+                    ';
+                }
+            }
+            customElements.define('my-component', MyComponent);
+        </script>
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}               >
+  {`
+
+        <my-slot-component>
+            <span>Content from outside</span>
+        </my-slot-component>
+        <script>
+            class MySlotComponent extends HTMLElement {
+                constructor() {
+                    super();
+                    const shadow = this.attachShadow({ mode: 'open' });
+                    shadow.innerHTML = '
+                        <style>
+                            ::slotted(span) { color: blue; }
+                        </style>
+                        <slot></slot>
+                    ';
+                }
+            }
+            customElements.define('my-slot-component', MySlotComponent);
+        </script>
+
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>
+
+
+

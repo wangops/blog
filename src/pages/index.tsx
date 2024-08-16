@@ -13,6 +13,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-shadowdom',
+        title:"WEB - ShadowDom",
+        description:"Web Shadow DOM 是一种网页组件技术，允许开发者创建封装的组件，其内部结构和样式与外部页面隔离。",
+        url:"/blog/web/shadowdom"
+    },{
         key:'blog-web-worker',
         title:"WEB - worker",
         description:"Web Workers 是一种在浏览器中运行 JavaScript 的技术，允许你在后台线程中执行代码，从而不会阻塞用户界面。这使得 Web 应用能够在执行耗时操作时保持响应性。",
