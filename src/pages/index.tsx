@@ -13,6 +13,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-mutationobserver',
+        title:"WEB - MutationObserver",
+        description:"MutationObserver 是一种 Web API，用于监视 DOM (文档对象模型) 的变化。与旧版的 DOM 事件（如 Mutation Events）相比，MutationObserver 提供了更高效、更灵活的方式来处理 DOM 变化。",
+        url:"/blog/web/mutationobserver"
+    },{
         key:'blog-web-shadowdom',
         title:"WEB - ShadowDom",
         description:"Web Shadow DOM 是一种网页组件技术，允许开发者创建封装的组件，其内部结构和样式与外部页面隔离。",

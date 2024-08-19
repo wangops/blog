@@ -1,0 +1,95 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Web MutationObserver 
+###### &nbsp;
+MutationObserver 是一种 Web API，用于监视 DOM (文档对象模型) 的变化。与旧版的 DOM 事件（如 Mutation Events）相比，MutationObserver 提供了更高效、更灵活的方式来处理 DOM 变化。
+###### &nbsp;
+#### 核心概念
+###### &nbsp;
+1、MutationRecord: 这是一个包含关于 DOM 变化的详细信息的对象。例如，它包含了被改变的节点、变化的类型等。
+###### &nbsp;
+2、MutationObserver: 这是监视 DOM 变化的主要接口。它在检测到变化时会调用指定的回调函数。
+###### &nbsp;
+#### 使用步骤
+###### &nbsp;
+##### 1. 定义回调函数
+###### &nbsp;
+回调函数是 MutationObserver 在检测到变化时调用的函数。它接收两个参数：
+###### &nbsp;
+1、mutationsList：一个 MutationRecord 对象的数组，包含所有的 DOM 变化记录。
+###### &nbsp;
+1、observer：当前的 MutationObserver 实例。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const callback = (mutationsList, observer) => {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                console.log('子节点被添加或删除');
+            } else if (mutation.type === 'attributes') {
+                console.log('元素属性被修改');
+            }
+        }
+    };
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 2. 创建 MutationObserver 实例
+###### &nbsp;
+使用回调函数创建一个 MutationObserver 实例。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+        const observer = new MutationObserver(callback);
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 3. 配置观察选项
+###### &nbsp;
+配置要观察的节点以及观察的选项。选项可以指定你希望监视的变化类型。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const targetNode = document.getElementById('target');
+    const config = {
+        attributes: true, // 观察属性变化
+        childList: true,  // 观察子节点的变化
+        subtree: true     // 观察所有后代节点的变化
+    };
+
+    observer.observe(targetNode, config);
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 4. 停止观察
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    observer.disconnect();
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 5. mutation.type 选项
+###### &nbsp;
+1、attributes (boolean)：如果为 true，则观察元素属性的变化。
+###### &nbsp;
+2、attributeFilter (array of strings)：指定要观察的属性名称的数组。只有这些属性的变化会触发回调函数。
+###### &nbsp;
+3、attributeOldValue (boolean)：如果为 true，则记录属性变化前的旧值。
+###### &nbsp;
+4、childList (boolean)：如果为 true，则观察子节点的增加或删除。
+###### &nbsp;
+4、subtree (boolean)：如果为 true，则观察目标节点及其所有后代节点的变化。
+###### &nbsp;
+</div>
+
+
+
