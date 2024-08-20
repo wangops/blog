@@ -13,6 +13,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-communicate',
+        title:"WEB - 标签页通信",
+        description:"标签页之间可以通过storage、message，broadcast等进行标签页之间进行通信。",
+        url:"/blog/web/communicate"
+    },{
         key:'blog-web-mutationobserver',
         title:"WEB - MutationObserver",
         description:"MutationObserver 是一种 Web API，用于监视 DOM (文档对象模型) 的变化。与旧版的 DOM 事件（如 Mutation Events）相比，MutationObserver 提供了更高效、更灵活的方式来处理 DOM 变化。",

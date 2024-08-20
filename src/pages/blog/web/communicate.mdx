@@ -1,0 +1,70 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Web 标签页之间通信
+###### &nbsp;
+在浏览器中，不同标签页之间可以通过以下几种方式进行通信：
+###### &nbsp;
+#### 1、localstorage和sessionstorage
+###### &nbsp;
+localStorage 和 sessionStorage: 使用 storage 事件可以监听 localStorage 或 sessionStorage 的变化，从而在不同标签页之间传递消息。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // 在标签页1中
+    localStorage.setItem('message', 'Hello from tab 1');
+
+    // 在标签页2中
+    window.addEventListener('storage', function(event) {
+    if (event.key === 'message') {
+        console.log('Message from another tab:', event.newValue);
+    }
+    });
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 2、BroadcastChannel
+###### &nbsp;
+BroadcastChannel API: 允许不同的浏览器上下文（例如标签页）之间进行简单的消息传递。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // 创建频道
+    const channel = new BroadcastChannel('my_channel');
+
+    // 发送消息
+    channel.postMessage('Hello from tab 1');
+
+    // 接收消息
+    channel.onmessage = function(event) {
+    console.log('Message received:', event.data);
+    };
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 3、Window.postMessage
+###### &nbsp;
+Window.postMessage API: 允许跨窗口、跨标签页或跨框架进行安全的消息传递。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+        // 在标签页1中
+        window.postMessage('Hello from tab 1', '*');
+
+        // 在标签页2中
+        window.addEventListener('message', function(event) {
+        console.log('Message received:', event.data);
+        });
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>
+
+
+
