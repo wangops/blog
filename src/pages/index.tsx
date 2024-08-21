@@ -13,6 +13,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-css-filter',
+        title:"CSS - filter",
+        description:"CSS filter 属性用于对元素应用图形效果，如模糊、亮度调整、对比度调整等。filter 属性可以接受多种函数作为值，这些函数定义了应用于元素的不同效果。",
+        url:"/blog/css/filter"
+    },{
         key:'blog-web-communicate',
         title:"WEB - 标签页通信",
         description:"标签页之间可以通过storage、message，broadcast等进行标签页之间进行通信。",

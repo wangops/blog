@@ -1,0 +1,170 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### CSS filter
+###### &nbsp;
+CSS filter 属性用于对元素应用图形效果，如模糊、亮度调整、对比度调整等。filter 属性可以接受多种函数作为值，这些函数定义了应用于元素的不同效果。以下是 CSS filter 属性的常见值及其效果：
+###### &nbsp;
+#### 1. blur()
+###### &nbsp;
+应用模糊效果。接受一个长度值，定义模糊的程度。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: blur(5px); /* 模糊程度为 5px */
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 2. brightness()
+###### &nbsp;
+调整元素的亮度。接受一个百分比或浮点数值，默认值是 1（100%）。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: brightness(0.5); /* 亮度减半 */
+    filter: brightness(150%); /* 亮度提高 50% */
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 3. contrast()
+###### &nbsp;
+调整元素的对比度。接受一个百分比或浮点数值，默认值是 1（100%）。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: contrast(2); /* 对比度增加到 200% */
+    filter: contrast(75%); /* 对比度降低到 75% */
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+
+#### 4. grayscale()
+###### &nbsp;
+将元素的颜色转换为灰度。接受一个百分比或浮点数值，默认值是 0（0%）。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: grayscale(100%); /* 完全转为灰度 */
+    filter: grayscale(50%); /* 半灰度 */
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 5. hue-rotate()
+###### &nbsp;
+旋转元素的色相。接受一个角度值（如 deg），用于改变色相。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: hue-rotate(90deg); /* 色相旋转 90 度 */
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 6. invert()
+###### &nbsp;
+反转元素的颜色。接受一个百分比或浮点数值，默认值是 0（0%）。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: invert(100%); /* 完全反转颜色 */
+    filter: invert(50%); /* 颜色反转 50% */
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 7. opacity()
+###### &nbsp;
+调整元素的透明度。接受一个百分比或浮点数值，默认值是 1（100%）。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: opacity(0.5); /* 透明度为 50% */
+    filter: opacity(80%); /* 透明度为 80% */
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 8. saturate()
+###### &nbsp;
+调整元素的饱和度。接受一个百分比或浮点数值，默认值是 1（100%）。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: saturate(2); /* 饱和度增加到 200% */
+    filter: saturate(50%); /* 饱和度降低到 50% */
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 9. sepia()
+###### &nbsp;
+将元素的颜色转换为深褐色（棕色），类似于旧照片效果。接受一个百分比或浮点数值，默认值是 0（0%）
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: sepia(100%); /* 完全应用棕色效果 */
+    filter: sepia(30%); /* 部分棕色效果 */
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 10. drop-shadow()
+###### &nbsp;
+添加一个阴影效果。接受阴影的偏移、模糊半径和颜色值。与 box-shadow 相似，但仅用于图像。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.5)); /* 阴影偏移 10px，模糊半径 5px，颜色半透明黑色 */
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 11. url()
+###### &nbsp;
+应用 SVG 滤镜。接受一个 URL，指向 SVG 滤镜定义的文件。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: url(#myFilter); /* 应用指定的 SVG 滤镜 */
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 12. none
+###### &nbsp;
+不应用任何滤镜效果。
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: none; /* 应用指定的 SVG 滤镜 */
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 13. 组合效果
+###### &nbsp;
+可以通过空格分隔的方式，组合多个滤镜效果：
+###### &nbsp;
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    filter: brightness(1.2) contrast(0.8) sepia(30%) blur(3px);
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+</div>
+
+
+
