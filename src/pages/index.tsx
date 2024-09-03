@@ -13,6 +13,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-fetch',
+        title:"Web - fetch与XHR",
+        description:"Fetch API 和 XMLHttpRequest（XHR）都是用于在 JavaScript 中进行网络请求的工具，但它们有一些显著的区别，影响着它们的使用方式和功能。",
+        url:"/blog/web/fetch"
+    },{
         key:'blog-css-filter',
         title:"CSS - filter",
         description:"CSS filter 属性用于对元素应用图形效果，如模糊、亮度调整、对比度调整等。filter 属性可以接受多种函数作为值，这些函数定义了应用于元素的不同效果。",

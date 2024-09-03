@@ -1,0 +1,155 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### fetch
+###### &nbsp;
+Fetch API 和 XMLHttpRequest（XHR）都是用于在 JavaScript 中进行网络请求的工具，但它们有一些显著的区别，影响着它们的使用方式和功能。
+###### &nbsp;
+#### 1、API
+###### &nbsp;
+##### Fetch API:
+###### &nbsp;
+基于 Promises：Fetch API 使用 Promises 进行异步操作，这使得处理响应更为简洁和可读。可以使用 async/await 语法进一步简化代码。
+###### &nbsp;
+简洁的语法：Fetch API 的语法比 XHR 更简洁直观，支持链式调用。
+###### &nbsp;
+支持多种响应格式：Fetch API 支持文本、JSON、Blob、FormData 等多种响应格式，且处理这些响应格式的接口一致。
+###### &nbsp;
+##### XMLHttpRequest:
+###### &nbsp;
+基于回调函数：XHR 使用回调函数来处理异步操作，这使得代码容易陷入回调地狱，尤其是复杂的异步操作时。
+###### &nbsp;
+语法较为繁琐：XHR 的 API 较为复杂，涉及到多个方法和属性来设置请求和处理响应。
+###### &nbsp;
+支持的响应格式有限：XHR 主要支持文本和 XML 响应，虽然可以处理 JSON，但需要手动解析。
+###### &nbsp;
+#### 2、请求和响应处理
+###### &nbsp;
+##### Fetch API:
+###### &nbsp;
+fetch() 方法返回一个 Promise 对象，允许使用 .then() 链式调用或者 async/await 进行响应处理。
+###### &nbsp;
+response.ok 属性可以简洁地检查请求是否成功。
+###### &nbsp;
+提供了对响应体的不同解析方法，如 response.json(), response.text(), response.blob() 等。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    fetch('https://api.example.com/data')
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error('Fetch error:', error));
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### XMLHttpRequest:
+###### &nbsp;
+XHR 使用回调函数来处理请求和响应，通常通过 onreadystatechange 事件来检查请求状态。
+###### &nbsp;
+需要手动处理请求状态码和响应数据的解析，例如，检查 xhr.status 和使用 xhr.responseText。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.example.com/data', true);
+        xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { // DONE
+            if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            console.log(data);
+            } else {
+            console.error('XHR error:', xhr.statusText);
+            }
+        }
+        };
+        xhr.send();
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 3、请求取消
+###### &nbsp;
+##### Fetch API:
+###### &nbsp;
+支持 AbortController，允许你中止一个 fetch 请求。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch('https://api.example.com/data', { signal })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => {
+        if (error.name === 'AbortError') {
+        console.log('Request was aborted');
+        } else {
+        console.error('Fetch error:', error);
+        }
+    });
+
+    controller.abort(); // 中止请求
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### XMLHttpRequest:
+###### &nbsp;
+支持使用 xhr.abort() 方法来中止请求。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.example.com/data', true);
+    xhr.send();
+
+    // 中止请求
+    xhr.abort();
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 4、跨域请求（CORS）
+###### &nbsp;
+##### Fetch API:
+###### &nbsp;
+Fetch API 默认支持跨域请求，并可以通过配置 mode 属性来处理跨域请求（如 cors, no-cors, same-origin）。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+
+    fetch('https://api.example.com/data', {
+        mode: 'cors'
+    });
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### XMLHttpRequest:
+###### &nbsp;
+XHR 也支持跨域请求，但处理起来较为繁琐，尤其是在设置请求头和处理 CORS 策略时。
+###### &nbsp;
+#### 5、进度事件
+###### &nbsp;
+##### Fetch API:
+###### &nbsp;
+不支持进度事件，不能直接监听下载或上传进度。
+###### &nbsp;
+##### XMLHttpRequest:
+###### &nbsp;
+支持进度事件，可以通过 onprogress 事件来监听请求的进度。
+###### &nbsp;
+</div>
+
+
+
