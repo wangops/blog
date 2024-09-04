@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import BlogItem from "@/components/BlogItem";
 import { useEffect } from "react";
 export default function CV(){
+
+
     const router = useRouter()
     
     const toBlog = ()=>{
@@ -13,6 +15,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-js-iife',
+        title:"Javascript - IIFE",
+        description:"IIFE，全称为 Immediately Invoked Function Expression，即“立即调用的函数表达式”。它是一种在 JavaScript 中创建和执行匿名函数的模式。IIFE 主要用于创建一个私有的作用域，以避免变量污染全局作用域，并可以在函数体内部定义私有变量和函数。",
+        url:"/blog/js/iife"
+    },{
         key:'blog-web-fetch',
         title:"Web - fetch与XHR",
         description:"Fetch API 和 XMLHttpRequest（XHR）都是用于在 JavaScript 中进行网络请求的工具，但它们有一些显著的区别，影响着它们的使用方式和功能。",

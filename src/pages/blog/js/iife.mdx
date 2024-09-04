@@ -1,0 +1,71 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### JavaScript IIFE
+###### &nbsp;
+IIFE，全称为 Immediately Invoked Function Expression，即“立即调用的函数表达式”。它是一种在 JavaScript 中创建和执行匿名函数的模式。IIFE 主要用于创建一个私有的作用域，以避免变量污染全局作用域，并可以在函数体内部定义私有变量和函数。
+###### &nbsp;
+#### IIFE 的工作原理
+###### &nbsp;
+IIFE 主要利用 JavaScript 的函数表达式（function expression）和自执行的特性。普通的函数声明（function declaration）并不会立即执行，而函数表达式则会立即执行。
+###### &nbsp;
+#### IIFE 的语法
+###### &nbsp;
+##### 1、基础示例
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    (function() {
+        // 代码在此处执行
+    })();
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+在这个示例中，`function() { ... }` 是一个函数表达式，它被包裹在圆括号中，这样 JavaScript 引擎就会将其作为一个表达式来处理，而不是一个函数声明。然后，紧接着的 `()` 是用来立即调用这个函数的。
+###### &nbsp;
+##### 2、传递参数
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+        (function(a, b) {
+            console.log(a + b);
+        })(5, 10);
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 3、创建私有作用域
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+
+    var globalVar = "I'm global";
+
+    (function() {
+        var localVar = "I'm local";
+        console.log(globalVar); // 访问全局变量
+        console.log(localVar);  // 访问局部变量
+    })();
+
+    console.log(typeof localVar); // undefined，因为 localVar 仅在 IIFE 内部可见
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 注意事项
+###### &nbsp;
+
+在 ES6 之前，IIFE 是一种常见的用于创建模块和封装作用域的模式。然而，随着 ES6 引入了模块化语法（import 和 export），IIFE 的使用频率有所下降。
+###### &nbsp;
+确保 IIFE 的语法正确，尤其是函数表达式和自执行的括号部分，否则会导致语法错误。
+
+###### &nbsp;
+</div>
+
+
+
