@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import * as echarts from 'echarts'
+import type { ECharts } from 'echarts';
 import chinaGeo from '@/assets/json/chinaGeo.json'
 import { NodeType,Node,statNode,makeSeries } from './Node';
 import { ToonShader1 } from 'three/examples/jsm/Addons.js';
@@ -118,7 +119,7 @@ export default function CesiumViewer() {
         },
         series:new Array<any>()
     }
-    let myChart:ECharts = null;
+    let myChart:ECharts;
     let s:Node;
     useEffect(()=>{
         const chart = echarts.init(document.getElementById('map')); 
@@ -179,14 +180,7 @@ export default function CesiumViewer() {
         }else{
             stat = statNode(s)
         }
-        const option = {
-            tooltip: {
-              trigger: 'item'
-            },
-            legend: {
-              orient: 'vertical',
-              left: 'left'
-            },
+        let option = {
             series: [
               {
                 name: 'Access From',
@@ -208,7 +202,7 @@ export default function CesiumViewer() {
               }
             ]
           };
-          const pieChart = echarts.init(document.getElementById('pie')); 
+          let pieChart:ECharts = echarts.init(document.getElementById('pie')); 
           pieChart.setOption(option);
     }
     
