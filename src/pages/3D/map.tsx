@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import * as echarts from 'echarts'
 import type { ECharts } from 'echarts';
 import chinaGeo from '@/assets/json/chinaGeo.json'
-import { NodeType,Node,statNode,makeSeries } from './Node';
-import { ToonShader1 } from 'three/examples/jsm/Addons.js';
-import Grid from 'echarts/types/src/coord/cartesian/Grid.js';
+import { NodeType,Node,statNode,makeSeries } from '../../city/Node';
 export default function CesiumViewer() {
     const dataList = [
         {name: "南海诸岛",value: 100,},
