@@ -1,0 +1,68 @@
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+
+<div className="mdx-box">
+#### Javascript ==
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Javascript在进行==比较时，不同类型的数据判断处理方式不一样。
+###### &nbsp;
+#### 一、x、y类型相同（x == y）
+###### &nbsp;
+##### 1 类型为undefined、null
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; x或者y为undefined、null时，return false
+###### &nbsp;
+##### 2 类型为number
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x或者y为NaN，return false
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x、y值相同，return true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = +0 && y == -0 return true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = -0 && y == +0 return true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其他情况return false
+###### &nbsp;
+##### 3 类型为string
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 如果 x 和 y 的字符序列完全相同（长度相同且对应位置的字符也相同），则返回 true。否则，返回 false。
+###### &nbsp;
+##### 4 Boolean
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 如果 x 和 y 都为 true 或都为 false，则返回 true。否则，返回 false。如果 x 和 y 指向同一个对象，则返回 true。否则，返回 false。
+###### &nbsp;
+#### 二、x、y类型相同（x == y）
+###### &nbsp;
+##### 1 x为null，y为undefined
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 返回true
+###### &nbsp;
+##### 2 x为undefined，y为null
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 返回true
+###### &nbsp;
+##### 3 x为number，y为string或Boolean
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 将y转换为number后和x进行对比
+###### &nbsp;
+##### 3 x为string或Boolean，y为number
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 将x转换为number后和x进行对比
+###### &nbsp;
+##### 3 x为string或者number，y为object
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 将y转换为ToPrimitive(y)后和x进行对比
+<blockquote>
+ToPrimitive 的转换过程遵循以下规则：
+优先使用 valueOf：如果对象有 valueOf 方法，调用此方法。如果返回的结果是原始值，则使用该值。
+如果 valueOf 返回的是对象：则调用 toString 方法。如果返回的结果是原始值，则使用该值。
+如果两个方法都返回对象：最终返回 undefined，并抛出一个错误。
+</blockquote>
+###### &nbsp;
+##### 4 x为object，y为string或者number
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 将y转换为ToPrimitive(y)后和x进行对比
+###### &nbsp;
+</div>
+
+
+
+

@@ -15,6 +15,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-js-compare',
+        title:"Javascript - ==",
+        description:"== Javascript在进行==比较时，不同类型的数据判断处理方式不一样。",
+        url:"/blog/js/compare"
+    },{
         key:'blog-js-iife',
         title:"Javascript - IIFE",
         description:"IIFE，全称为 Immediately Invoked Function Expression，即“立即调用的函数表达式”。它是一种在 JavaScript 中创建和执行匿名函数的模式。IIFE 主要用于创建一个私有的作用域，以避免变量污染全局作用域，并可以在函数体内部定义私有变量和函数。",
