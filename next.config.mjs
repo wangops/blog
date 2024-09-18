@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 
 import createMDX from "@next/mdx"
-import path from "path";
 const nextConfig = {
+    trailingSlash:true,
     distDir:"html",
     output:"export",
     pageExtensions:["js","jsx","md","mdx","ts","tsx"],
