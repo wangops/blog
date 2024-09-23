@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export default function CV(){
 
 
+
     const router = useRouter()
     
     const toBlog = ()=>{
@@ -15,6 +16,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-js-var',
+        title:"Javascript - var、let、const",
+        description:"在JavaScript 中，var、let 和 const 都是用于声明变量的关键字，但它们有一些重要的区别和联系",
+        url:"/blog/js/var"
+    },{
         key:'blog-js-compare',
         title:"Javascript - ==",
         description:"== Javascript在进行==比较时，不同类型的数据判断处理方式不一样。",

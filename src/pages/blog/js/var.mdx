@@ -1,0 +1,82 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Javascript var、let、const
+###### &nbsp;
+在JavaScript 中，var、let 和 const 都是用于声明变量的关键字，但它们有一些重要的区别和联系
+###### &nbsp;
+#### 1. 作用域
+###### &nbsp;
+var: 变量的作用域是函数作用域（如果在函数内声明）或全局作用域（如果在函数外声明）。在块级结构（如 if、for）中使用 var 声明的变量会提升到函数或全局作用域。
+###### &nbsp;
+let 和 const: 变量的作用域是块级作用域。这意味着在 {} 中声明的变量只在该块内有效。
+###### &nbsp;
+#### 2. 提升（Hoisting）
+###### &nbsp;
+var: 声明的变量会被提升到作用域的顶部，虽然初始化不会提升。
+###### &nbsp;
+let 和 const: 变量会被提升，但在声明之前不能访问（会抛出 ReferenceError），这段时间被称为“暂时性死区（Temporal Dead Zone）”。
+###### &nbsp;
+#### 3. 重新赋值
+###### &nbsp;
+var: 可以多次声明和重新赋值。
+###### &nbsp;
+let: 可以多次赋值，但不能重复声明同一个变量（在同一作用域内）。
+###### &nbsp;
+const: 变量必须在声明时初始化，且不能重新赋值。注意，const 对象的属性仍然可以被修改，但对象本身不能被重新赋值。
+###### &nbsp;
+#### 4. 使用场景
+###### &nbsp;
+var: 由于其作用域和提升的特性，通常不推荐使用，除非你需要兼容旧的 JavaScript 环境。
+###### &nbsp;
+let: 推荐在需要变量可变的场景中使用。
+###### &nbsp;
+const: 推荐在变量不需要重新赋值的情况下使用，以提高代码的可读性和可维护性。
+###### &nbsp;
+#### 示例
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    // var 示例
+    function testVar() {
+        if (true) {
+            var x = 10;
+        }
+        console.log(x); // 10，因 var 是函数作用域
+    }
+
+    // let 示例
+    function testLet() {
+        if (true) {
+            let y = 20;
+        }
+        // console.log(y); // ReferenceError: y is not defined
+    }
+
+    // const 示例
+    const z = 30;
+    // z = 40; // TypeError: Assignment to constant variable.
+    const obj = { a: 1 };
+    obj.a = 2; // 允许修改对象的属性
+
+    testVar();
+    testLet();
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 5. 总结
+###### &nbsp;
+var: 使用 var 会造成作用域和提升方面的混淆，尽量避免使用。
+###### &nbsp;
+let 和 const 提供了更清晰的作用域管理，通常推荐使用这两者。
+###### &nbsp;
+对于不需要重新赋值的变量，优先选择 const。
+###### &nbsp;
+</div>
+
+
+
