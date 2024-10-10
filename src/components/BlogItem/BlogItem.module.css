@@ -1,0 +1,26 @@
+.blog_item{
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    border: solid 1px #dedede;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.blog_title{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+}
+.blog_summary{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666666;
+    margin-bottom: 10px;
+}

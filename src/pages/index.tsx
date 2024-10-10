@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import BlogItem from "@/components/BlogItem";
+import BlogItem from "@/components/BlogItem/BlogItem";
 import { useEffect } from "react";
+import style from "./index.module.css"
 export default function CV(){
 
 
@@ -193,20 +194,20 @@ export default function CV(){
     }]
 
     return (
-        <div className="index_container">
-            <div className="index_header">
-                <Image src="/assets/images/logo.png" alt="" className="index_logo" width={120} height={80} priority={true}></Image>
-                    <div className="index_menu_background">
-                        <button className="index_menu_button" onClick={to3D}>3D</button>
+        <div className={style.index_container}>
+            <div className={style.index_header}>
+                <Image src="/assets/images/logo.png" alt="" className={style.index_logo} width={120} height={80} priority={true}></Image>
+                    <div className={style.index_menu_background}>
+                        <button className={style.index_menu_button} onClick={to3D}>3D</button>
                     </div>
             </div> 
-            <div className="index_footer">
+            <div className={style.index_footer}>
                 {
                     data.map(item=>(
                         <BlogItem key={item.key} title={item.title} description={item.description} url={item.url}></BlogItem>
                     ))
                 }
-                <a className="index_records" href="https://beian.miit.gov.cn/">皖ICP备2024047102号-1</a>
+                <a className={style.index_records} href="https://beian.miit.gov.cn/">皖ICP备2024047102号-1</a>
             </div>
         </div>
         
