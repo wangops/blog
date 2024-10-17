@@ -1,0 +1,53 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### CSS float
+###### &nbsp;
+CSS中的float属性用于将元素从正常文档流中浮动，使其向左或向右对齐，允许其他内容围绕它流动。float属性常用于创建文本环绕图像的效果以及布局设计。
+###### &nbsp;
+#### 1. float属性的取值包括：
+###### &nbsp;
+left：将元素向左浮动，其他内容会围绕其右侧。
+###### &nbsp;
+right：将元素向右浮动，其他内容会围绕其左侧。
+###### &nbsp;
+none：默认值，不浮动，元素处于正常文档流中。
+###### &nbsp;
+inherit：继承父元素的float属性值。
+###### &nbsp;
+#### 2. 用法
+###### &nbsp;
+
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    img {
+        float: left; /* 将图片向左浮动 */
+        margin: 10px; /* 添加外边距 */
+    }
+
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 3. 使用场景
+###### &nbsp;
+文本环绕：常用于使文本环绕图像。
+###### &nbsp;
+布局：可以用于创建多列布局，尤其是在没有Flexbox和Grid之前。
+###### &nbsp;
+侧边栏：使侧边栏元素浮动，以便主内容区域可以在其旁边展示
+###### &nbsp;
+#### 4. 注意事项
+###### &nbsp;
+float元素的高度可能会被父元素忽略，因此要使用清除浮动的方法来确保父元素能够正确包裹浮动的子元素
+###### &nbsp;
+float属性在响应式设计中可能导致布局问题，通常在现代布局中使用Flexbox或CSS Grid更为合适。
+###### &nbsp;
+
+</div>
+
+
+

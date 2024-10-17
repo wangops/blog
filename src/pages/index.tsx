@@ -17,6 +17,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-css-float',
+        title:"CSS - float",
+        description:"CSS中的float属性用于将元素从正常文档流中浮动，使其向左或向右对齐，允许其他内容围绕它流动。float属性常用于创建文本环绕图像的效果以及布局设计。",
+        url:"/blog/css/float"
+    },{
         key:'blog-js-var',
         title:"Javascript - var、let、const",
         description:"在JavaScript 中，var、let 和 const 都是用于声明变量的关键字，但它们有一些重要的区别和联系",
