@@ -4,9 +4,6 @@ import BlogItem from "@/components/BlogItem/BlogItem";
 import { useEffect } from "react";
 import style from "./index.module.css"
 export default function CV(){
-
-
-
     const router = useRouter()
     
     const toBlog = ()=>{
@@ -17,6 +14,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-css-selector',
+        title:"CSS - 选择器",
+        description:"CSS 选择器用于选择 HTML 元素并应用样式。",
+        url:"/blog/css/selector"
+    },{
         key:'blog-css-float',
         title:"CSS - float",
         description:"CSS中的float属性用于将元素从正常文档流中浮动，使其向左或向右对齐，允许其他内容围绕它流动。float属性常用于创建文本环绕图像的效果以及布局设计。",

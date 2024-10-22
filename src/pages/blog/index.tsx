@@ -3,7 +3,7 @@ import style from "@/style/blog.module.css"
 export default function BlogIndex (){
     return (
         <div className={style.blog_container}>
-            <div className={style.blog_options} style={{"background-color":"red"}}>
+            <div className={style.blog_options} style={{"background":"red"}}>
                 <p className={style.blog_options_title}>Vue</p>
             </div>
             <div className={style.blog_options}>

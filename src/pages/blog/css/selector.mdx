@@ -1,0 +1,112 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### CSS 选择器
+###### &nbsp;
+CSS 选择器用于选择 HTML 元素并应用样式
+###### &nbsp;
+#### 1. 元素选择器：
+###### &nbsp;
+直接选择特定标签：
+###### &nbsp;
+（所有 `<p>` 元素文本为红色）
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    p{ 
+        color: red; 
+    }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 2. 类选择器：
+###### &nbsp;
+直接选择特定标签：
+###### &nbsp;
+（所有 `class` 为 `highlight` 的元素背景为黄色）
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    .highlight { 
+        background: yellow; 
+    }
+  `}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 3. ID选择器：
+###### &nbsp;
+选择带有特定 ID 的元素，ID 应唯一
+###### &nbsp;
+（ID 为 header 的元素字体大小为 24px）。
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    #header { 
+        font-size: 24px;
+    }
+  `}
+</SyntaxHighlighter>
+###### &nbsp;
+
+
+#### 4. 属性选择器：
+###### &nbsp;
+根据元素的属性选择。
+###### &nbsp;
+（所有类型为 text 的输入框边框样式）。
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    input[type="text"] { 
+        border: 1px solid #ccc; 
+    }
+  `}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 5. 伪类选择器：
+###### &nbsp;
+选择特定状态的元素。
+###### &nbsp;
+（鼠标悬停时，链接颜色变为蓝色）。
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    a:hover { 
+        color: blue; 
+    }
+  `}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 6. 伪元素选择器：
+###### &nbsp;
+选择元素的一部分。
+###### &nbsp;
+（段落的第一行加粗）。
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    p::first-line { 
+        font-weight: bold; 
+    }
+  `}
+</SyntaxHighlighter>
+###### &nbsp;
+
+#### 7. 组合选择器：
+###### &nbsp;
+结合多种选择器。
+###### &nbsp;
+（在 div 中 class 为 active 的元素文本为绿色）。
+<SyntaxHighlighter language="css" style={darcula}>
+  {`
+    div .active { 
+        color: green; 
+    }
+  `}
+</SyntaxHighlighter>
+###### &nbsp;
+
+</div>
+
+
+
