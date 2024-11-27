@@ -14,6 +14,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-linux-mode',
+        title:"linux - 用户态与内核态",
+        description:"在计算机操作系统中，用户态（User Mode）和内核态（Kernel Mode）是两种重要的执行模式，它们分别用于区分不同的代码执行权限和资源访问控制。理解这两种模式对于理解操作系统的工作原理至关重要。",
+        url:"/blog/linux/mode"
+    },{
         key:'blog-css-selector',
         title:"CSS - 选择器",
         description:"CSS 选择器用于选择 HTML 元素并应用样式。",
@@ -128,6 +133,11 @@ export default function CV(){
         title:"Vue - key的作用",
         description:"key 是用于帮助 Vue 识别虚拟 DOM 中 VNode 的一个特殊属性。它主要用于优化 Vue 的虚拟 DOM diff 算法的过程，确保在列表渲染时能够正确地复用和重新排序现有元素，从而提升性能和避免一些潜在的渲染问题。",
         url:"/blog/vue/key"
+    },{
+        key:'blog-oc-KVO',
+        title:"OC - KVO",
+        description:"在 iOS 中，KVO 是通过运行时动态方法交换（Method Swizzling）实现的，它并不依赖于静态编译时的代码。KVO 利用了 Objective-C 的消息机制和 KVC（键值编码），来观察对象的属性变化。简而言之，当我们对某个对象的属性进行观察时，系统会动态地替换或增加相关方法，以便在属性值变化时通知观察者。",
+        url:"/blog/oc/kvo"
     },{
         key:'blog-oc-import',
         title:"OC - #import与#include",
