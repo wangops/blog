@@ -1,0 +1,174 @@
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+<div className="mdx-box">
+
+#### OC KVO
+###### &nbsp;
+KVC（Key-Value Coding）是 iOS 中一个非常强大的机制，它允许通过字符串键来访问对象的属性值，而不需要直接调用属性的 getter 或 setter 方法。
+###### &nbsp;
+KVO 主要是通过 NSKeyValueObserving 类来实现的。下面是 KVO 源码分析的几个关键点。
+###### &nbsp;
+####  一、KVC 基本实现原理
+###### &nbsp;
+在 Objective-C 中，NSObject 类提供了 KVC 的实现，它是所有类的基类。KVC 依赖于运行时的动态消息传递机制，通过反射（runtime）访问和修改对象的属性。
+NSObject 类实现了 NSKeyValueCoding 协议，该协议定义了 KVC 的基本方法，主要有以下几个方法：
+###### &nbsp;
+1） valueForKey:：根据属性名称（key）获取属性值。
+###### &nbsp;
+2） setValue:forKey:：根据属性名称（key）设置属性值。
+###### &nbsp;
+3） valueForKeyPath: 和 setValue:forKeyPath:：允许通过路径访问嵌套属性。
+###### &nbsp;
+
+
+####  二、运行时机制
+###### &nbsp;
+KVC 的实现依赖于 Objective-C 的运行时特性，主要体现在：
+###### &nbsp;
+1） 动态方法解析
+###### &nbsp;
+2） 动态查找实例变量和方法
+###### &nbsp;
+3） 动态消息发送
+###### &nbsp;
+
+
+####  三、KVC相关代码
+###### &nbsp;
+我们以 NSObject 类的实现为基础，简要分析 KVC 的核心实现。注意，以下的代码是对 KVC 实现的简化，展示了它的基本工作原理。
+###### &nbsp;
+##### 1.valueForKey：
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    - (id)valueForKey:(NSString *)key {
+        // 检查 key 是否为空
+        if (!key) {
+            [NSException raise:NSInvalidArgumentException format:@"Cannot pass nil key"];
+        }
+        
+        // 1. 首先查找对应的实例变量
+        id value = [self valueForUndefinedKey:key];
+        if (value) {
+            return value;
+        }
+        
+        // 2. 查找 getter 方法（例如：key -> -key）
+        NSString *getterName = key;
+        SEL getter = NSSelectorFromString(getterName);
+        if ([self respondsToSelector:getter]) {
+            return [self performSelector:getter];
+        }
+        
+        // 3. 如果都没有找到，抛出异常
+        [NSException raise:NSUndefinedKeyException format:@"[<%@> valueForKey:]: this class is not key value coding-compliant for the key \"%@\".", NSStringFromClass([self class]), key];
+        return nil;
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 2.setValue:forKey:
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    - (void)setValue:(id)value forKey:(NSString *)key {
+        // 检查 key 是否为空
+        if (!key) {
+            [NSException raise:NSInvalidArgumentException format:@"Cannot pass nil key"];
+        }
+        
+        // 1. 查找 setter 方法（例如：key -> setKey:）
+        NSString *setterName = [NSString stringWithFormat:@"set%@:", [key capitalizedString]];
+        SEL setter = NSSelectorFromString(setterName);
+        
+        // 如果 setter 方法存在，直接调用
+        if ([self respondsToSelector:setter]) {
+            [self performSelector:setter withObject:value];
+        } else {
+            // 2. 如果没有 setter 方法，直接设置实例变量
+            [self setValue:value forUndefinedKey:key];
+        }
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 3. setValue:forUndefinedKey:
+###### &nbsp;
+setValue:forUndefinedKey: 是一个可以被重写的方法，用于处理访问不存在的属性时的行为。如果你在子类中没有实现该方法，默认行为是抛出异常：
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+        // 默认抛出异常，提示没有对应的 key
+        [NSException raise:NSUndefinedKeyException format:@"[<%@> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key \"%@\".", NSStringFromClass([self class]), key];
+    }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 4. valueForUndefinedKey:
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    - (id)valueForUndefinedKey:(NSString *)key {
+        // 默认抛出异常，提示没有对应的 key
+        [NSException raise:NSUndefinedKeyException format:@"[<%@> valueForUndefinedKey:]: this class is not key value coding-compliant for the key \"%@\".", NSStringFromClass([self class]), key];
+        return nil;
+    }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+
+####  四、运行时反射机制
+###### &nbsp;
+KVC 主要依赖于 Objective-C 运行时 来动态解析方法和实例变量，下面是几个重要的运行时函数：
+###### &nbsp;
+1）NSSelectorFromString：将字符串转换为 SEL（选择器），这个选择器可以对应一个方法。
+###### &nbsp;
+2）respondsToSelector:：检查对象是否响应某个选择器（即方法是否存在）。
+###### &nbsp;
+3）performSelector:：动态地调用选择器指定的方法。
+###### &nbsp;
+
+
+####  五、KVC 的对象路径访问（KeyPath）
+###### &nbsp;
+KVC 还支持嵌套属性的访问，即通过 valueForKeyPath: 或 setValue:forKeyPath: 来访问更深层次的属性。
+
+例如，访问 person.address.city 时，KVC 会解析 address 部分，然后再次调用 valueForKey: 来获取 city。
+
+这背后的实现也是基于 KVC 对象的动态解析，只不过它会递归地沿着 KeyPath 进行查找。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    - (id)valueForKeyPath:(NSString *)keyPath {
+        NSArray *keys = [keyPath componentsSeparatedByString:@"."];
+        id value = self;
+        for (NSString *key in keys) {
+            value = [value valueForKey:key];
+        }
+        return value;
+    }
+
+    - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+        NSArray *keys = [keyPath componentsSeparatedByString:@"."];
+        id target = self;
+        for (NSString *key in keys) {
+            target = [target valueForKey:key];
+        }
+        [target setValue:value forKey:keys.lastObject];
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+
+</div>
+
+
+

@@ -134,6 +134,11 @@ export default function CV(){
         description:"key 是用于帮助 Vue 识别虚拟 DOM 中 VNode 的一个特殊属性。它主要用于优化 Vue 的虚拟 DOM diff 算法的过程，确保在列表渲染时能够正确地复用和重新排序现有元素，从而提升性能和避免一些潜在的渲染问题。",
         url:"/blog/vue/key"
     },{
+        key:'blog-oc-KVC',
+        title:"OC - KVC",
+        description:"KVC（Key-Value Coding）是 iOS 中一个非常强大的机制，它允许通过字符串键来访问对象的属性值，而不需要直接调用属性的 getter 或 setter 方法。",
+        url:"/blog/oc/kvc"
+    },{
         key:'blog-oc-KVO',
         title:"OC - KVO",
         description:"在 iOS 中，KVO 是通过运行时动态方法交换（Method Swizzling）实现的，它并不依赖于静态编译时的代码。KVO 利用了 Objective-C 的消息机制和 KVC（键值编码），来观察对象的属性变化。简而言之，当我们对某个对象的属性进行观察时，系统会动态地替换或增加相关方法，以便在属性值变化时通知观察者。",
