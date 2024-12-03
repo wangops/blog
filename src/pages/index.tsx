@@ -14,6 +14,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-babel',
+        title:"Web - babel",
+        description:"在计算机操作系统中，用户态（User Mode）和内核态（Kernel Mode）是两种重要的执行模式，它们分别用于区分不同的代码执行权限和资源访问控制。理解这两种模式对于理解操作系统的工作原理至关重要。",
+        url:"/blog/web/babel"
+    },{
         key:'blog-linux-mode',
         title:"linux - 用户态与内核态",
         description:"在计算机操作系统中，用户态（User Mode）和内核态（Kernel Mode）是两种重要的执行模式，它们分别用于区分不同的代码执行权限和资源访问控制。理解这两种模式对于理解操作系统的工作原理至关重要。",

@@ -1,0 +1,91 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+#### Web Babel
+###### &nbsp;
+Babel 的工作原理可以分为多个阶段，主要包括解析、转换和生成三个阶段。它的核心任务是将现代 JavaScript 代码（ES6+）转换为兼容旧版 JavaScript 引擎的代码。下面是对 Babel 工作原理的详细分析：
+###### &nbsp;
+#### 一、解析（Parsing）
+###### &nbsp;
+解析是 Babel 的第一个阶段，目的是将源代码转换为 AST（抽象语法树，Abstract Syntax Tree）。AST 是一种树形数据结构，每个节点表示代码中的一个语法元素（如函数、变量、运算符等）
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>输入：</span>Babel 接收到原始的 JavaScript 代码（如 ES6+ 语法）。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>过程：</span>Babel 使用 @babel/parser（以前叫做 babylon）将源代码解析为 AST。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>输出：</span>AST 对象，它是源代码的结构化表示。
+###### &nbsp;
+<span style={{fontWeight:"bold"}}>示例：</span>输入代码：
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const x = () => { return 42; }
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+转换为 AST 的形式（简化版）可能是:
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    {
+        "type": "Program",
+        "body": [{
+            "type": "VariableDeclaration",
+            "declarations": [{
+            "type": "VariableDeclarator",
+            "id": { "type": "Identifier", "name": "x" },
+            "init": {
+                "type": "ArrowFunctionExpression",
+                "params": [],
+                "body": {
+                "type": "BlockStatement",
+                "body": [{
+                    "type": "ReturnStatement",
+                    "argument": {
+                    "type": "Literal",
+                    "value": 42
+                    }
+                }]
+                }
+            }
+            }],
+            "kind": "const"
+        }]
+    }
+
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+
+####  二、转换（Transformation）
+###### &nbsp;
+转换是 Babel 的核心阶段，Babel 在这个阶段根据配置文件（如 .babelrc）和插件，处理 AST 并进行必要的转换。这些转换的主要目标是将现代 JavaScript 代码转换为兼容旧版环境的代码。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>输入：</span>解析阶段生成的 AST。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>过程：</span>根据 Babel 配置（例如，使用 @babel/preset-env、@babel/plugin-transform-arrow-functions 等插件），对 AST 进行修改和转换。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>插件：</span>Babel 插件可以遍历 AST，根据定义的规则对节点进行修改。例如，箭头函数的转换插件会将箭头函数节点转换为普通函数表达式。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>预设：</span>预设是插件的集合，开发者可以选择预设来处理不同版本的 JavaScript。例如，@babel/preset-env 会根据目标环境选择合适的转换插件。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>输出：</span>转换后的 AST，已经根据目标环境的需求进行了修改。解析阶段生成的 AST。
+###### &nbsp;
+
+####  三、生成（Code Generation）
+###### &nbsp;
+生成阶段将转换后的 AST 再次转换为最终的 JavaScript 代码。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>输入：</span>转换后的 AST。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>过程：</span>Babel 使用 @babel/generator 将 AST 重新生成为 JavaScript 代码。这个过程会遍历 AST，生成相应的代码字符串，保证代码的格式和语法符合 JavaScript 标准。
+###### &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <span style={{fontWeight:"bold"}}>输出：</span>生成的 JavaScript 代码。此时，代码已经根据 Babel 插件和预设进行转换，确保可以在目标环境中运行。
+###### &nbsp;
+</div>
+
+
+
