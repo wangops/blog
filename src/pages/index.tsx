@@ -16,7 +16,7 @@ export default function CV(){
     const data = [{
         key:'blog-web-babel',
         title:"Web - babel",
-        description:"在计算机操作系统中，用户态（User Mode）和内核态（Kernel Mode）是两种重要的执行模式，它们分别用于区分不同的代码执行权限和资源访问控制。理解这两种模式对于理解操作系统的工作原理至关重要。",
+        description:"Babel 的工作原理可以分为多个阶段，主要包括解析、转换和生成三个阶段。它的核心任务是将现代 JavaScript 代码（ES6+）转换为兼容旧版 JavaScript 引擎的代码。",
         url:"/blog/web/babel"
     },{
         key:'blog-linux-mode',
