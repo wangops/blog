@@ -14,6 +14,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-web-sourcemap',
+        title:"Web - sourcemap",
+        description:"SourceMap（源映射）是一个在前端开发中非常重要的概念，它使得在浏览器中调试压缩、转译后的代码变得更加容易和清晰。简而言之，SourceMap 是将编译后的代码与其原始源代码之间的映射关系存储在一起，允许浏览器或其他开发工具（如调试器）将调试过程映射回源代码，从而提高开发效率和调试体验。",
+        url:"/blog/web/sourcemap"
+    },{
         key:'blog-web-babel',
         title:"Web - babel",
         description:"Babel 的工作原理可以分为多个阶段，主要包括解析、转换和生成三个阶段。它的核心任务是将现代 JavaScript 代码（ES6+）转换为兼容旧版 JavaScript 引擎的代码。",
