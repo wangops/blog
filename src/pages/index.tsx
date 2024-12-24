@@ -14,6 +14,11 @@ export default function CV(){
     }
 
     const data = [{
+        key:'blog-js-this',  
+        title:"Javascript - this",
+        description:"在 JavaScript 中，this 关键字是一个非常重要的概念，它的值在不同的执行上下文中可能会有所不同。",
+        url:"/blog/js/this"
+    },{
         key:'blog-web-sourcemap',
         title:"Web - sourcemap",
         description:"SourceMap（源映射）是一个在前端开发中非常重要的概念，它使得在浏览器中调试压缩、转译后的代码变得更加容易和清晰。简而言之，SourceMap 是将编译后的代码与其原始源代码之间的映射关系存储在一起，允许浏览器或其他开发工具（如调试器）将调试过程映射回源代码，从而提高开发效率和调试体验。",

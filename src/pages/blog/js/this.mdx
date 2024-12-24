@@ -1,0 +1,175 @@
+ 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import  {darcula}  from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+
+<div className="mdx-box">
+在 JavaScript 中，this 关键字是一个非常重要的概念，它的值在不同的执行上下文中可能会有所不同。
+
+###### &nbsp;
+#### 1. this 的基本含义
+###### &nbsp;
+this 是一个关键字，表示当前执行上下文中的“调用者”或“对象”。它的值在函数被调用时由 JavaScript 引擎自动决定，通常指向调用该函数的对象。
+###### &nbsp;
+#### 2. this 的指向规则
+###### &nbsp;
+JavaScript 中，this 的指向规则主要受以下几种情况的影响：
+###### &nbsp;
+##### 1) 全局上下文中的 this
+###### &nbsp;
+在全局执行环境中（即函数外部），this 指向全局对象。在浏览器中，这通常是 window 对象；在 Node.js 中，则是 global 对象。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    console.log(this); // 浏览器中：window, Node.js 中：global
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+注意：在严格模式 ('use strict') 下，this 不再指向全局对象，而是 undefined。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    'use strict';
+    console.log(this); // undefined
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 2) 函数中的 this
+###### &nbsp;
+在非严格模式下，this 指向全局对象（在浏览器中是 window）
+###### &nbsp;
+在严格模式下，this 的值是 undefined。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    function showThis() {
+    console.log(this);
+    }
+    showThis(); // 在浏览器中：window, 在严格模式中：undefined
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+方法调用：当函数作为对象的方法被调用时，this 会指向该方法所属的对象。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const person = {
+    name: 'Alice',
+        greet() {
+            console.log(this.name);
+        }
+    };
+    person.greet(); // Alice
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 3) 箭头函数中的 this
+###### &nbsp;
+箭头函数与普通函数的一个重要区别是它 没有自己的 this，它的 this 值是在函数创建时继承自外部作用域（即它的词法作用域）。因此，箭头函数中的 this 不会发生变化，而是始终指向函数定义时的上下文。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const obj = {
+    name: 'Bob',
+        greet() {
+            setTimeout(() => {
+            console.log(this.name);
+            }, 1000);
+        }
+    };
+
+    obj.greet(); // Bob
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+这里的 setTimeout 中使用的是箭头函数，因此它的 this 继承自 greet 方法的 this，也就是 obj。
+###### &nbsp;
+##### 4) 构造函数中的 this
+###### &nbsp;
+当使用 new 关键字调用一个函数时，该函数被称为构造函数，this 在构造函数中指向新创建的对象。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    function Person(name) {
+        this.name = name;
+    }
+
+    const john = new Person('John');
+    console.log(john.name); // John
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+在构造函数中，this 指向新创建的对象，构造函数可以用来初始化该对象的属性。
+###### &nbsp;
+##### 5) call、apply 和 bind 改变 this
+###### &nbsp;
+call 和 apply：这两个方法都可以用来调用函数并指定 this 的值。它们的区别在于参数的传递方式：
+###### &nbsp;
+call：传入参数以逗号分隔。
+###### &nbsp;
+apply：传入参数以数组的形式传递。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    function greet() {
+        console.log(this.name);
+    }
+
+    const person = { name: 'Charlie' };
+
+    greet.call(person); // Charlie
+    greet.apply(person); // Charlie
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+bind：bind 方法返回一个新的函数，这个新函数的 this 永远指向绑定的对象，而不是调用时的上下文。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const person = { name: 'David' };
+
+    function greet() {
+        console.log(this.name);
+    }
+
+    const boundGreet = greet.bind(person);
+    boundGreet(); // David
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+##### 5) this 与事件处理
+###### &nbsp;
+在事件处理函数中，this 指向触发事件的元素，通常是事件的目标（DOM 元素）。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    const button = document.querySelector('button');
+
+    button.addEventListener('click', function() {
+        console.log(this); // 在事件回调中，this 指向触发事件的 DOM 元素
+    });
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+如果是箭头函数，this 会继承外部作用域的 this，而不是指向事件的目标。
+###### &nbsp;
+<SyntaxHighlighter language="javascript" style={darcula}>
+  {`
+    button.addEventListener('click', () => {
+        console.log(this); // 这里的 this 不是指向 button，而是外部作用域的 this
+    });
+`}
+</SyntaxHighlighter>
+###### &nbsp;
+#### 3. this 的一些注意点
+###### &nbsp;
+this 的绑定：JavaScript 中的 this 是动态绑定的，这意味着 this 的值是在函数被调用时确定的，而不是函数定义时确定的。
+###### &nbsp;
+使用 bind 修改 this 的指向：通过 bind 方法，您可以固定一个函数的 this，使其指向特定的对象。
+###### &nbsp;
+严格模式下的 this：在严格模式下，this 不会指向全局对象，若函数没有显式指定 this，则 this 是 undefined。
+###### &nbsp;
+</div>
+
+
+
